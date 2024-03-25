@@ -1,0 +1,68 @@
+include _vars
+include _mixins
+doctype html
+html(lang="ru")
+    head
+        block head
+            title PageTitle
+
+        // SEO
+        meta(charset="utf-8")
+        meta(name="keywords" content="мтс, мтс беларусь, мтс бай, mts, мобильный оператор")
+        meta(name="description" content="Телекоммуникационные услуги от МТС в Беларуси. ⭕️Выгодные тарифы на мобильную связь и интернет, сервисы для жизни.")
+
+        // Initial settings
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(name="format-detection" content="telephone=no")
+
+        // Favicon
+        link(rel="shortcut icon" href="images/favicons/favicon.ico" type="image/x-icon")
+        link(rel="apple-touch-icon" href="images/favicons/apple-touch-icon.png")
+        link(rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png")
+        link(rel="icon" type="image/png" sizes="192x192" href="images/favicons/android-chrome-192x192.png")
+        link(rel="icon" type="image/png" sizes="96x96" href="images/favicons/android-chrome-96x96.png")
+        link(rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png")
+        link(rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png")
+        link(rel="manifest" href="images/favicons/manifest.webmanifest")
+        meta(name="msapplication-TileColor" content="#ffffff")
+        meta(name="msapplication-TileImage" content="images/favicons/mstile-144x144.png")
+        meta(name="msapplication-config" content="images/favicons/browserconfig.xml")
+        meta(name="theme-color" content="#ffffff")
+
+        // Open Graph
+        meta(property="og:title" content="МТС &ndash; мобильный оператор в Беларуси")
+        meta(property="og:description" content="Телекоммуникационные услуги от МТС в Беларуси. ⭕️Выгодные тарифы на мобильную связь и интернет, сервисы для жизни.")
+        meta(property="og:url" content="https://www.mts.by/")
+        meta(property="og:type" content="website")
+        meta(property="og:site_name" content="МТС")
+        meta(property="og:image" content="https://www.mts.by/upload/resize_cache/webp/dev2fun_opengraph/94e/94e8235d21a737c0066943bca4469420.webp")
+        meta(property="og:image:type" content="image/webp")
+        meta(property="og:image:width" content="1183")
+        meta(property="og:image:height" content="622")
+
+        // CSS
+        link(rel="stylesheet" href="css/main.min.css")
+    block variables 
+        - var layoutClass = ''
+    body
+        // >>> LAYOUT >>>
+        .layout(class= layoutClass)
+            block header
+                include ../blocks/_header
+            
+            //-a.page-header__burger.menu-btn.js-menu-btn(href="#")
+              span.burger-icon
+
+            //-block mobile-menu 
+                include ../blocks/_mobile-menu
+
+            block main
+                include ../blocks/_main
+
+        // <<< LAYOUT <<<
+
+        block footer
+            include ../blocks/_footer
+        block js
+            script(src="js/main.min.js")

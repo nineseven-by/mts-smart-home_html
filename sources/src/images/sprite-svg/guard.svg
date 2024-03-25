@@ -1,0 +1,22 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_18447_4873)">
+<path d="M44.375 44.375L48.125 48.125" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M53.7534 30C53.7402 33.6915 52.8557 37.3278 51.1719 40.6129" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40.6131 51.1689C37.3278 52.8527 33.6915 53.7371 30 53.7503" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30 6.25C33.6915 6.2632 37.3278 7.1477 40.6129 8.83155" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M51.1719 19.3867C52.8556 22.6719 53.7401 26.3082 53.7533 29.9998" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.625 15.625L11.875 11.875" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.25 29.9996C6.2632 26.3081 7.1477 22.6719 8.83155 19.3867" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.3906 8.8314C22.6758 7.14767 26.3121 6.26322 30.0037 6.25" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.0035 53.7495C26.312 53.7363 22.6758 52.8518 19.3906 51.168" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.8314 40.6131C7.14767 37.3278 6.26322 33.6915 6.25 30" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M44.375 15.625L48.125 11.875" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.625 44.375L11.875 48.125" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28.8232 41.1335C26.3352 40.6359 24.0964 39.2916 22.4877 37.3294C20.8791 35.3672 20 32.9082 20 30.3709V26.8056C20 25.3321 20.5853 23.9191 21.6272 22.8772C22.6691 21.8353 24.0821 21.25 25.5556 21.25H34.4444C35.9179 21.25 37.3309 21.8353 38.3728 22.8772C39.4147 23.9191 40 25.3321 40 26.8056V30.3709C40 32.9081 39.1209 35.367 37.5123 37.3292C35.9037 39.2914 33.665 40.6357 31.177 41.1334C30.4002 41.2888 29.6001 41.2888 28.8232 41.1335Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_18447_4873">
+<rect width="60" height="60" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,63 @@
+// Grid
+$width_lg: 1170px;
+$width_md: 991px;
+$width_xs: 767px;
+$width_mob: 500px;
+
+$grid-width: 1170px;
+$grid-gutter: 30px;
+$grid-columns: 12;
+
+
+// Colors
+$black: #303138;
+$black-black: #141416;
+$red: #E30613;
+$dark-red: #C5030F;
+$red-hover: #BE000B;
+$light-gray: #F2F3F7;
+$light-gray-hover: #E6E9F3;
+$black-gray: #646C76;
+$wow-gray: #95A1B9;
+$blue: #007CFF;
+$dark-blue: #0360C1;
+$blue-spec: #3FAEFF;
+$white: #FFFFFF;
+$dark-black: #141416;
+$pantone: #BE274C;
+$pantone-hover: #9E1A3B;
+$violet: #7662EB;
+$smart-gradient: linear-gradient(180deg, #9FAEEA 0%, #8A99EA 100%);
+$smart-color: #95A4EA;
+
+$black-ivi: #1B172B;
+$bg-ivi: #232038;
+$rose-ivi: #F30745;
+$rose-ivi-hover: #CD1646;
+
+$red-gradient: linear-gradient(45deg, #E30611 0%, #FF535C 100%);
+$blue-red-gradient: linear-gradient(45deg, #5BACF8 0%, #EC0D18 100%);
+$tv-gradient: linear-gradient(45deg, #061CE3 0%, #FF535C 100%);
+$fly-gradient: linear-gradient(45deg, #82B3FF 0%, #E9ECF8 100%);
+$junior-gradient: linear-gradient(63deg, #A07EED 0%, #5D51EA 100%);
+$game-gradient: linear-gradient(130deg, #0ADFED 0%, #8756FF 100%);
+$premium-gradient: linear-gradient(270deg, #5E7CDD 0.13%, #9891F6 105.97%);
+
+
+// Transitions
+$transition-fast-ease: .2s ease;
+$transition-fast-linear: .2s linear;
+
+// MediaQueries
+$minMobile: 320;
+$mobile: 576;
+$minTablet: 768;
+$tablet: 992;
+$minPC: 1200;
+$PC: 1400;
+
+
+:root {
+  --bg-pc-shop-promo: linear-gradient(180deg, #060426 0%, #0E0832 47.28%, #0A072E 100%);
+  --bg-mobile-shop-promo: linear-gradient(180deg, #060426 40.4%, #0A072E 76.96%, #0A072E 100%);
+}

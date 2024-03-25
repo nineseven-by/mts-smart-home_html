@@ -1,0 +1,792 @@
+extends base/_layout
+block head
+    title Main
+block page
+  // TODO! Секция "Популярное" дополнится товарами, также будут расставлены оставшиеся ссылки
+  section.section.key
+    .container-fluid 
+      .key__wrapper
+        .key__content 
+          h1 Сделайте свой дом умным - с нами это легко и доступно!
+          p.key__description Наш магазин предлагает вам самые передовые технологии для создания умного дома, вы сможете  контролировать каждый аспект своего дома, где бы вы ни находились, с помощью вашего смартфона
+          .key__footer 
+            a.btn.btn_white.btn_arrow.key__btn(href="#smarthome-order")
+              span Получить консультацию
+              span.btn__arrow
+                +use("arrow", 24, 24)
+        .key__image 
+          img(src="./images/pages/smarthome/key.webp", alt="Умный дом вместе с МТС")
+  .space.space--default
+  section#smarthome-categories.section.section--gray
+    .container-fluid 
+      .section__wrapper 
+        h2.section__title Основные категории товаров
+        .smarthome-categories__wrapper 
+          ul.smarthome-cards.smarthome-cards--categories
+            li.smarthome-cards__item.smarthome-cards__item--light
+              a.card-smarthome.card-smarthome--light(href="#")
+                .card-smarthome__content
+                  h3.card-smarthome__title Умное освещение
+                  p.card-smarthome__description Управляйте яркостью, цветом и расписанием освещения, создавайте атмосферу под настроение и экономьте энергию благодаря интеллектуальным светильникам и лампочкам.
+                .card-smarthome__image.card-image 
+                  .card-image--1
+                    img(src="./images/pages/smarthome/categories/light-1.webp", alt="Яндекс.Лампа Е27")
+                  .card-image--2
+                    img(src="./images/pages/smarthome/categories/light-1.webp", alt="Яндекс.Лампа Е14")
+            li.smarthome-cards__item.smarthome-cards__item--safe
+              a.card-smarthome.card-smarthome--safe(href="#")
+                .card-smarthome__content
+                  h3.card-smarthome__title Системы безопасности
+                  p.card-smarthome__description Обеспечьте защиту вашему дому и семье с помощью интеллектуальных систем безопасности. От видеонаблюдения и датчиков движения до сигнализаций и умных замков - контролируйте доступ и мониторьте безопасность своего дома
+                .card-smarthome__image.card-image 
+                  .card-image--1
+                    img(src="./images/pages/smarthome/categories/safe-1.webp", alt="IP-камера Xiaomi")
+            li.smarthome-cards__item.smarthome-cards__item--kitchen
+              a.card-smarthome.card-smarthome--kitchen(href="#")
+                .card-smarthome__content
+                  h3.card-smarthome__title Умные устройства для кухни и бытовой техники
+                  p.card-smarthome__description Упростите свою жизнь и экономьте время с помощью от кофемашин и холодильников с функцией управления из приложения до умных весов и мультиварок
+                .card-smarthome__image.card-image 
+                  .card-image--1
+                    img(src="./images/pages/smarthome/categories/kitchen-1.webp", alt="Умная Колонка с Алисой")
+                  .card-image--2
+                    img(src="./images/pages/smarthome/categories/kitchen-2.webp", alt="Чайник Xiaomi")
+            li.smarthome-cards__item.smarthome-cards__item--default
+              a.card-smarthome.card-smarthome--default(href="#")
+                .card-smarthome__icon 
+                  +use("fingerprint", 64, 64)
+                .card-smarthome__content
+                  h3.card-smarthome__title Интеллектуальные системы управления
+                  p.card-smarthome__description Полностью автоматизируйте управление вашим домом с помощью интеллектуальных систем управления.
+            li.smarthome-cards__item.smarthome-cards__item--default
+              a.card-smarthome.card-smarthome--default(href="#")
+                .card-smarthome__icon 
+                  +use("heartsun", 64, 64)
+                .card-smarthome__content
+                  h3.card-smarthome__title Умный климат-контроль
+                  p.card-smarthome__description Регулируйте температуру, влажность и вентиляцию, чтобы обеспечить комфортное пребывание в любое время года.
+            li.smarthome-cards__item.smarthome-cards__item--black
+              a.card-smarthome.card-smarthome--black(href="#")
+                .card-smarthome__icon 
+                  +use("apps", 64, 64)
+                .card-smarthome__content
+                  p.card-smarthome__description Это лишь малая часть ассортимента умных устройств, доступных в нашем магазине
+  .space.space--default
+  section#smarthome-examples.section.smart.section-default
+    template#template-location
+      li.smart-locs__item
+        button.smart-location 
+          // Здесь в src прописываем путь до папки с фотографиями локаций
+          // В alt прописываем приставку для описания локации
+          img(src="./images/pages/smart/locations/", alt="Примеры устройств - ")
+          span.smart-location__content
+            span.smart-location__title nameRu
+            span.smart-location__value value
+    template#template-dot
+      button.smart-dots__btn.dot(data-smart-group="")
+        span.dot__wrapper
+          //-span.dot__bg
+          span.dot__plus
+          span.dot__title nameRu
+    template#template-group
+      li.smart-categories__item 
+        button.smart-categories__btn 
+            span.smart-categories__image 
+              img(src="./images/pages/smart/categories/kettle.png", alt="Электрочайник")
+            span.smart-categories__text Электрочайник
+            span.smart-categories__arrow 
+              +use("arrow-right", 24, 24)
+    template#template-app-mi
+      .smart-card-app 
+        .smart-card-app__mock 
+          img(src="./images/pages/smart/apps/mi-mock.webp", alt="Mi Home")
+        .smart-card-app__header 
+          .smart-card-app__logo
+            img(src="./images/pages/smart/apps/mi-logo.webp", alt="Логотип Mi Home")
+          h3.smart-card-app__title Mi Home
+        .smart-card-app__links
+          a.smart-card-app__link(href="https://play.google.com/store/apps/details?id=com.xiaomi.smarthome&hl=ru&gl=US", target="_blank")
+            img(src="./images/pages/smart/apps/get-google-play.svg", alt="Скачать из Google Play")
+          a.smart-card-app__link(href="https://apps.apple.com/ru/app/mi-home-xiaomi-smart-home/id957323480", target="_blank")
+            img(src="./images/pages/smart/apps/get-app-store.svg", alt="Скачать из AppStore")
+    template#template-app-alice
+      .smart-card-app.smart-block-app--alice  
+        .smart-card-app__mock 
+          img(src="./images/pages/smart/apps/alice-mock.webp", alt="Дом с Алисой")
+        .smart-card-app__header 
+          .smart-card-app__logo
+            img(src="./images/pages/smart/apps/alice-logo.webp", alt="Логотип Дом с Алисой")
+          h3.smart-card-app__title Дом с Алисой
+        .smart-card-app__links
+          a.smart-card-app__link(href="https://redirect.appmetrica.yandex.com/serve/460006466196152926", target="_blank")
+            img(src="./images/pages/smart/apps/get-google-play.svg", alt="Скачать из Google Play")
+          a.smart-card-app__link(href="https://redirect.appmetrica.yandex.com/serve/676179246397299963", target="_blank")
+            img(src="./images/pages/smart/apps/get-app-store.svg", alt="Скачать из AppStore")
+    template#template-smart-card 
+      a.smart-card.smart-card--big(href="#")
+        .smart-card__image 
+          img(src="#", alt="#")
+        .smart-card__info
+          p.smart-card__title name
+          .smart-card__arrow
+            img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+    .container-fluid 
+      .smart-wrapper 
+        h2.section-default__title.center.h1.anim.anim__create Где использовать
+        .smart-locs
+          ul.smart-locs__list 
+            //-li.smart-locs__item
+              button.smart-location 
+                img(src="./images/pages/smart/locations/kitchen.webp", alt="Примеры устройств для кухни")
+                span.smart-location__content
+                  span.smart-location__title Кухня
+                  span.smart-location__value 6 примеров
+        .smart-view 
+          .smart-view__wrapper 
+            //-.smart-view__viewer.smart-viewer.smart-viewer--list
+            .smart-view__viewer.smart-viewer.smart-viewer--image
+              .smart-view__header
+                h3.smart-view__title Для животных
+                .smart-view__display.tabs-icon 
+                  button.tabs-icon__btn(data-viewmode="list")
+                    span.tabs-icon__icon 
+                      //-img(src="./images/default/list.svg", alt="Список")
+                    span.tabs-icon__text Списком
+                  button.tabs-icon__btn.active(data-viewmode="image") 
+                    span.tabs-icon__icon
+                      //-img(src="./images/default/image.svg", alt="Фото")
+                    span.tabs-icon__text На фото
+                p.smart-view__hint Кликните на плюс, <br>чтобы узнать подробнее
+                button.smart-view__close(title="Закрыть")
+              .smart-viewer__wrapper 
+                #smart-viewer-image.smart-viewer__inner
+                  .smart-viewer__img
+                    img(src="./images/pages/smart/locations/full/kitchen.webp", alt="Кухня")
+                    #target-dots.smart-dots 
+                      button.smart-dots__btn.dot(data-item="")
+                        span.dot__wrapper
+                          //-span.dot__bg
+                          span.dot__plus
+                          span.dot__title Аэрофритюрница
+              .smart-viewer__preview
+                input#smart-viewer-preview(type="range", name="preview", min=0, max=100, aria-label="Переместить изображение")
+                img(src="./images/pages/smart/locations/full/kitchen.webp", alt="Кухня")
+                .smart-viewer__range
+                  span.smart-viewer__handle
+              .smart-categories 
+                .smart-categories__wrapper
+                  .smart-categories__inner
+                    h3 Примеры использования 
+                    .smart-categories__body
+                      ul#target-groups.smart-categories__list 
+                        li.smart-categories__item 
+                          // Ru name - Электрочайник
+                          // En name - kettle
+                          //-button.smart-categories__btn 
+                            span.smart-categories__image 
+                              img(src="./images/pages/smart/categories/kettle.png", alt="Электрочайник")
+                            span.smart-categories__text Электрочайник
+                            span.smart-categories__arrow    
+                              +use("arrow-right", 24, 24) 
+                          //-+smart-category-btn("Электрочайник", "kettle")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Датчик освещения", "light-sensor")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Лампа светодиодная", "led-lamp")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Пылесос вертикальный", "upright-hoover")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Колонка портативная", "portable-speaker")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Смарт-блендер", "smart-blender")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Часы-термогигрометр", "thermohygrometer-clock")
+                        li.smart-categories__item 
+                          //-+smart-category-btn("Аэрофритюрница", "air-fryer")
+              #group-popup.smart-view__popup.smart-popup
+                button.swiper-control__btn.swiper-control__left(aria-label="Предыдущий слайд")
+                  +use('swiper-arrow', 28, 28)
+                button.swiper-control__btn.swiper-control__right(aria-label="Следующий слайд")
+                  +use('swiper-arrow', 28, 28)
+                .smart-popup__wrapper 
+                  .smart-popup__header.smart-view__header 
+                    h3.smart-view__title Аэрофритюрница
+                    button.smart-view__close(title="Закрыть")
+                  .smart-popup__tabs.tabs-smart   
+                    .tabs__btns 
+                      button.tabs__btn.active(data-smart-tabs-btn) Комбинация
+                      button.tabs__btn(data-smart-tabs-btn) Описание
+                  .smart-popup__body(data-smart-tabs-windows)
+                    .smart-popup__window.smart-popup__combination(data-smart-tabs-window)
+                      .swiper 
+                        .swiper-wrapper 
+                          .swiper-slide
+                            a.smart-card.smart-card--big(href="#")
+                              .smart-card__image 
+                                img(src="./images/pages/smart/goods/xiaomi-electric-glass-kettle.webp", alt="Товар - Xiaomi Mi Smart Air Fryer Pro 4L")
+                              .smart-card__info
+                                p.smart-card__title Xiaomi Electric Glass Kettle
+                                .smart-card__arrow
+                                  img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+                            a.smart-card.smart-card--big(href="#")
+                              .smart-card__image 
+                                img(src="./images/pages/smart/goods/xiaomi-electric-glass-kettle.webp", alt="Товар - Xiaomi Mi Smart Air Fryer Pro 4L")
+                              .smart-card__info
+                                p.smart-card__title Xiaomi Electric Glass Kettle
+                                .smart-card__arrow
+                                  img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+                            .smart-card-app 
+                              .smart-card-app__mock 
+                                img(src="./images/pages/smart/apps/mi-mock.webp", alt="Mi Home")
+                              .smart-card-app__header 
+                                .smart-card-app__logo
+                                  img(src="./images/pages/smart/apps/mi-logo.webp", alt="Логотип Mi Home")
+                                h3.smart-card-app__title Mi Home
+                              .smart-card-app__links
+                                a.smart-card-app__link(href="https://play.google.com/store/apps/details?id=com.xiaomi.smarthome&hl=ru&gl=US", target="_blank")
+                                  img(src="./images/pages/smart/apps/get-google-play.svg", alt="Скачать из Google Play")
+                                a.smart-card-app__link(href="https://apps.apple.com/ru/app/mi-home-xiaomi-smart-home/id957323480", target="_blank")
+                                  img(src="./images/pages/smart/apps/get-app-store.svg", alt="Скачать из AppStore")
+                            .smart-card-app.smart-block-app--alice  
+                              .smart-card-app__mock 
+                                img(src="./images/pages/smart/apps/alice-mock.webp", alt="Дом с Алисой")
+                              .smart-card-app__header 
+                                .smart-card-app__logo
+                                  img(src="./images/pages/smart/apps/alice-logo.webp", alt="Логотип Дом с Алисой")
+                                h3.smart-card-app__title Дом с Алисой
+                              .smart-card-app__links
+                                a.smart-card-app__link(href="https://redirect.appmetrica.yandex.com/serve/460006466196152926", target="_blank")
+                                  img(src="./images/pages/smart/apps/get-google-play.svg", alt="Скачать из Google Play")
+                                a.smart-card-app__link(href="https://redirect.appmetrica.yandex.com/serve/676179246397299963", target="_blank")
+                                  img(src="./images/pages/smart/apps/get-app-store.svg", alt="Скачать из AppStore")
+                          .swiper-slide
+                            a.smart-card.smart-card--big(href="#")
+                              .smart-card__image 
+                                //-img(src="", alt="")
+                                img(src="./images/pages/smart/goods/xiaomi-electric-glass-kettle.webp", alt="Товар - Xiaomi Mi Smart Air Fryer Pro 4L")
+                              .smart-card__info
+                                p.smart-card__title Xiaomi Electric Glass Kettle
+                                .smart-card__arrow
+                                  img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+                            a.smart-card.smart-card--big(href="#")
+                              .smart-card__image 
+                                //-img(src="", alt="")
+                                img(src="./images/pages/smart/goods/xiaomi-electric-glass-kettle.webp", alt="Товар - Xiaomi Mi Smart Air Fryer Pro 4L")
+                              .smart-card__info
+                                p.smart-card__title Xiaomi Electric Glass Kettle
+                                .smart-card__arrow
+                                  img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+                            .smart-card-app 
+                              .smart-card-app__mock 
+                                img(src="./images/pages/smart/apps/mi-mock.webp", alt="Mi Home")
+                              .smart-card-app__header 
+                                .smart-card-app__logo
+                                  img(src="./images/pages/smart/apps/mi-logo.webp", alt="Логотип Mi Home")
+                                h3.smart-card-app__title Mi Home
+                              .smart-card-app__links
+                                a.smart-card-app__link(href="#")
+                                  img(src="./images/pages/smart/apps/get-google-play.svg", alt="Скачать из Google Play")
+                                a.smart-card-app__link(href="#")
+                                  img(src="./images/pages/smart/apps/get-app-store.svg", alt="Скачать из AppStore")
+                    .smart-popup__window.smart-popup__description(data-smart-tabs-window) 
+                      .swiper 
+                        .swiper-wrapper 
+                          .swiper-slide
+                            a.smart-card(href="#")
+                              .smart-card__image 
+                                img(src="./images/pages/smart/goods/xiaomi-electric-glass-kettle.webp", alt="Товар - Xiaomi Mi Smart Air Fryer Pro 4L")
+                              .smart-card__info
+                                p.smart-card__title Xiaomi Mi Smart Air Fryer Pro 4L
+                                .smart-card__arrow
+                                  // 
+                                  img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+                            .smart-popup__more 
+                              ul 
+                                li Оснащен прозрачной колбой из боросиликатного стекла, которое отлично выдерживает термические удары и механические повреждения, а также служит долго и является на 100% безопасным материалом.
+                                li Высокая мощность в 2200Вт. 
+                                li Xiaomi Electric Glass Kettle получил четырехуровневую систему защиты. Он не боится перепадов температур и напряжения в сети, а также автоматически выключается после вскипания или при отсутствии в колбе воды.
+                          .swiper-slide
+                          
+                            a.smart-card(href="#")
+                              .smart-card__image 
+                                img(src="./images/pages/smart/goods/xiaomi-electric-glass-kettle.webp", alt="Товар - Xiaomi Mi Smart Air Fryer Pro 4L")
+                              .smart-card__info
+                                p.smart-card__title Slide2
+                                .smart-card__arrow
+                                  // 
+                                  img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+                            .smart-popup__more 
+                              ul 
+                                li Оснащен прозрачной колбой из боросиликатного стекла, которое отлично выдерживает термические удары и механические повреждения, а также служит долго и является на 100% безопасным материалом.
+                                li Высокая мощность в 2200Вт. 
+                                li Xiaomi Electric Glass Kettle получил четырехуровневую систему защиты. Он не боится перепадов температур и напряжения в сети, а также автоматически выключается после вскипания или при отсутствии в колбе воды.
+                      //-button.swiper-control__btn.swiper-control__left
+                        +use('swiper-arrow', 28, 28)
+                      //-button.swiper-control__btn.swiper-control__right
+                        +use('swiper-arrow', 28, 28)
+                  .smart-pagination 
+                    .smart-pagination__wrapper 
+                      ul.smart-pagination__list 
+                        li.smart-pagination__item 
+                          button.smart-pagination__btn 
+                            span 1
+                        li.smart-pagination__item 
+                          button.smart-pagination__btn.active 
+                            span 2
+                        li.smart-pagination__item 
+                          button.smart-pagination__btn 
+                            span 3
+                        //-li.smart-pagination__item 
+                        //-  button.smart-pagination__btn 4
+                        //-li.smart-pagination__item 
+                        //-  button.smart-pagination__btn 5
+                        //-li.smart-pagination__item 
+                        //-  button.smart-pagination__btn 6
+                        li.smart-pagination__item 
+                          button.smart-pagination__btn 
+                            span 7
+                        li.smart-pagination__item 
+                          button.smart-pagination__btn 
+                            span 8
+                        li.smart-pagination__item 
+                          button.smart-pagination__btn 
+                            span 9
+  .space.space--default
+  section#smarthome-advantages.section.section--gray 
+    .container-fluid 
+      .section__wrapper 
+        h2.section__title Премущества
+        .smarthome-advantages__wrapper 
+          ul.smarthome-cards.smarthome-cards--advantages
+            li.smarthome-cards__item.smarthome-cards__item--bg
+              article.card-smarthome.card-smarthome--bg
+                .card-smarthome__content
+                  h3.card-smarthome__title Поддержка здорового образа жизни:
+                  p.card-smarthome__description Умные устройства для умного дома могут помочь вам в поддержании здорового образа жизни. Вы получаете возможность легко отслеживать свое здоровье и принимать информированные решения для улучшения качества жизни.
+                .card-smarthome__bg
+                  img(src="./images/pages/smarthome/advantages/sport.webp", alt="Спортивная девушка")
+            li.smarthome-cards__item.smarthome-cards__item--energy
+              article.card-smarthome.card-smarthome--energy
+                .card-smarthome__content
+                  h3.card-smarthome__title Энергоэффективность
+                  p.card-smarthome__description Благодаря возможности точного контроля и управления потреблением энергии и ресурсов, умные устройства помогают сократить расход и снизить счета за коммунальные услуги.
+                .card-smarthome__image.card-image 
+                  .card-image--1
+                    img(src="./images/pages/smarthome/advantages/energy-1.webp", alt="Яндекс.Лампа Е27")
+                  .card-image--2
+                    img(src="./images/pages/smarthome/advantages/energy-2.webp", alt="Умная розетка Xiaomi")
+                  .card-image--3
+                    img(src="./images/pages/smarthome/advantages/energy-3.webp", alt="Умная беспроводная кнопка Яндекс")
+            li.smarthome-cards__item.smarthome-cards__item--guard
+              article.card-smarthome.card-smarthome--guard
+                .card-smarthome__icon 
+                  +use("guard", 60, 60)
+                .card-smarthome__content
+                  h3.card-smarthome__title Безопасность и защита
+                  p.card-smarthome__description Системы безопасности для умного дома обеспечивают непрерывный мониторинг и защиту от вторжений, пожаров и других чрезвычайных ситуаций
+            li.smarthome-cards__item.smarthome-cards__item--automatization
+              article.card-smarthome.card-smarthome--automatization
+                .card-smarthome__icon 
+                  +use("automatization", 60, 60)
+                .card-smarthome__content
+                  h3.card-smarthome__title Автоматизация и удобство
+                  p.card-smarthome__description Умные устройства позволяют автоматизировать ряд повседневных задач, таких как управление освещением, температурой и безопасностью
+  .space.space--default
+  section#smarthome-popular.section 
+    // Секция может быть немного изменена (добавление товаров)
+    .container-fluid 
+      .section__wrapper 
+        h2.section__title Популярные продукты
+        .smarthome-popular__wrapper 
+          .tabs(data-tabs-control="detail-content")
+            .tabs-header 
+              .tabs-header__wrapper
+                button.tabs__button.active Пылесос
+                button.tabs__button Камера
+                button.tabs__button Чайник
+                button.tabs__button Колонка
+                button.tabs__button Лампочка
+            .tabs__wrapper 
+              .tabs__container
+                .smartpopular-more 
+                  .smartpopular-more__description
+                    ul.smartpopular-more__list 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle IP-камера
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                  .smartpopular-more__slider 
+                    .swiper 
+                      .swiper-wrapper 
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id-2")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                      button.swiper-button.swiper-button-prev(aria-label="Предыдущий слайд")
+                        +use('swiper-arrow', 28, 28)
+                      button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
+                        +use('swiper-arrow', 28, 28)
+                  a.smartpopular-more__all.btn.btn_gray(href="#") Посмотреть все продукты
+              .tabs__container
+                .smartpopular-more 
+                  .smartpopular-more__description
+                    ul.smartpopular-more__list 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle IP-камера
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                  .smartpopular-more__slider 
+                    .swiper 
+                      .swiper-wrapper 
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id-2")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                      button.swiper-button.swiper-button-prev(aria-label="Предыдущий слайд")
+                        +use('swiper-arrow', 28, 28)
+                      button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
+                        +use('swiper-arrow', 28, 28)
+                  a.smartpopular-more__all.btn.btn_gray(href="#") Посмотреть все продукты
+              .tabs__container
+                .smartpopular-more 
+                  .smartpopular-more__description
+                    ul.smartpopular-more__list 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle IP-камера
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                  .smartpopular-more__slider 
+                    .swiper 
+                      .swiper-wrapper 
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id-2")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                      button.swiper-button.swiper-button-prev(aria-label="Предыдущий слайд")
+                        +use('swiper-arrow', 28, 28)
+                      button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
+                        +use('swiper-arrow', 28, 28)
+                  a.smartpopular-more__all.btn.btn_gray(href="#") Посмотреть все продукты
+              .tabs__container
+                .smartpopular-more 
+                  .smartpopular-more__description
+                    ul.smartpopular-more__list 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle IP-камера
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                  .smartpopular-more__slider 
+                    .swiper 
+                      .swiper-wrapper 
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id-2")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                      button.swiper-button.swiper-button-prev(aria-label="Предыдущий слайд")
+                        +use('swiper-arrow', 28, 28)
+                      button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
+                        +use('swiper-arrow', 28, 28)
+                  a.smartpopular-more__all.btn.btn_gray(href="#") Посмотреть все продукты
+              .tabs__container
+                .smartpopular-more 
+                  .smartpopular-more__description
+                    ul.smartpopular-more__list 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle IP-камера
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                      li.smartpopular-more__item 
+                        p.smartpopular__subtitle Энергоэффективность
+                        p Умные устройства позволяют автоматизировать  повседневных задач, таких как управление 
+                  .smartpopular-more__slider 
+                    .swiper 
+                      .swiper-wrapper 
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                        .swiper-slide
+                          .smartpopular-item(data-good-id="example-id-2")
+                            .smartpopular-item__image
+                              img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Xiaomi Smart Camera C300")
+                            .smartpopular-item__content
+                              h3.smartpopular-item__title Xiaomi Smart Camera C300
+                              p.smartpopular-item__price 
+                                span.color-red от 6,5 руб./мес.
+                                small При покупке в рассрочку
+                              p.smartpopular-item__price 
+                                span.color-black от 6,5 руб./мес.
+                                small При разовой оплате
+                              .smartpopular-item__btns 
+                                button.btn.btn_black(data-popup-order) Купить
+                                a.btn.btn_gray(href="#") Подробнее
+                      button.swiper-button.swiper-button-prev(aria-label="Предыдущий слайд")
+                        +use('swiper-arrow', 28, 28)
+                      button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
+                        +use('swiper-arrow', 28, 28)
+                  a.smartpopular-more__all.btn.btn_gray(href="#") Посмотреть все продукты
+  .space.space--default
+  section#smarthome-reviews.section 
+    .container-fluid 
+      .section__wrapper(data-slider-container) 
+        .section__header
+          h2.section__title Отзывы 
+            span.color-gray (32)
+          .section__controls 
+            button.swiper-button.swiper-button-prev(aria-label="Предыдущий слайд")
+              +use('swiper-arrow', 28, 28)
+            button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
+              +use('swiper-arrow', 28, 28)
+        .smarthome-reviews__wrapper 
+          .swiper
+            .swiper-wrapper 
+              .swiper-slide
+                article.card.card--review
+                  .card__header
+                    .card__author
+                      .card__avatar 
+                        img(src="./images/pages/smarthome/reviews/author.webp", alt="Автор отзыва")
+                      p.card__name Игорь Петров
+                    .card__score 
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star
+                  .card__content 
+                    h3.card__title Лампа светодиодная Яндекс.Лампа 3. Е27
+                    p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+                article.card.card--review
+                  .card__header
+                    .card__author
+                      .card__avatar 
+                        img(src="./images/pages/smarthome/reviews/author.webp", alt="Автор отзыва")
+                      p.card__name Игорь Петров
+                    .card__score 
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star
+                  .card__content 
+                    h3.card__title Очиститель воздуха Xiaomi Smart Air Purifier 4 Compact
+                    p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+                article.card.card--review
+                  .card__header
+                    .card__author
+                      .card__avatar 
+                        img(src="./images/pages/smarthome/reviews/author.webp", alt="Автор отзыва")
+                      p.card__name Игорь Петров
+                    .card__score 
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star
+                  .card__content 
+                    h3.card__title Электрочайник Xiaomi Mi Smart Kettle Pro MJHWSH02YM (белый)
+                    p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+                article.card.card--review
+                  .card__header
+                    .card__author
+                      .card__avatar 
+                        img(src="./images/pages/smarthome/reviews/author.webp", alt="Автор отзыва")
+                      p.card__name Игорь Петров
+                    .card__score 
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star.filled
+                      span.star
+                  .card__content 
+                    h3.card__title Лампа светодиодная Яндекс.Лампа 3. Е27
+                    p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+  .space.space--default
+  section#smarthome-order.section 
+    .container-fluid 
+      .smarthome-order 
+        .smarthome-order__content 
+          h2.section__title Оставить заявку <br>на консультацию
+          form.smarthome-order__form(action="#", method="post") 
+            //-
+            label(for="client") Имя
+            .wrap-input
+              input#client(type="text")
+            //-
+            label(for="phone") Номер телефона
+            .wrap-input
+              input#phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone")
+            //-
+            label(for="comment") Комментарий
+            .wrap-input
+              textarea#comment
+            button.btn.btn_red(type="submit") Отправить
+        .smarthome-order__image
+          img(src="./images/pages/smarthome/order/women.webp", alt="Сотрудник колл-центра")
+  .popups 
+    // Попап динамический, в одиночном экземпляре, первый инпут отвечает за название, которое отправляется в форме
+    .popup#popup-item
+      .popup__wrapper 
+        .popup__header 
+          .popup__preview 
+            img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Товар Xiaomi Smart Camera C300", data-good-preview)
+          h2.popup__title Оставить заявку на оформление 
+            span(data-good-name) Xiaomi Smart Camera C300
+          button.popup__close(title="Закрыть")
+        .popup__body
+          form.smarthome-order__form(action="#", method="post") 
+            // В value данного инпута будет приходить название или id товара
+            input#popup-id(type="text", hidden, data-good-name-input)
+            //-
+            label(for="popup-client") Имя
+            .wrap-input
+              input#popup-client(type="text")
+            //-
+            label(for="popup-phone") Номер телефона
+            .wrap-input
+              input#popup-phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone")
+            //-
+            label(for="popup-comment") Комментарий
+            .wrap-input
+              textarea#popup-comment
+            button.btn.btn_red(type="submit") Отправить
+  // Товары для функционала умного дома
+  script   
+    include external/_smart-external.js

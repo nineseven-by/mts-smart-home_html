@@ -1,0 +1,388 @@
+@use 'sass:math';
+
+%svg-common {
+	background: url("../images/sprites/main.svg") no-repeat;
+}
+
+.svg-image-apps {
+	@extend %svg-common;
+	background-position: 75.86206896551724% 0;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-apps {
+	background-position: 75.86206896551724% 0;
+}
+@mixin svg-image-apps-hover {
+	.svg-image-apps {
+		@include svg-pos-image-apps-hover
+	}
+}
+
+.svg-image-apps:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-apps-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-automatization {
+	@extend %svg-common;
+	background-position: 0 61.111111111111114%;
+	background-size: math.div(216, 62)*100% auto;
+	width: 62px;
+
+}
+@mixin svg-pos-image-automatization {
+	background-position: 0 61.111111111111114%;
+}
+@mixin svg-image-automatization-hover {
+	.svg-image-automatization {
+		@include svg-pos-image-automatization-hover
+	}
+}
+
+.svg-image-automatization:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(62, 62)*100%;
+}
+
+.svg-image-automatization-dims {
+	width: 62px;
+	height: 62px;
+}
+
+.svg-image-facebook-logo {
+	@extend %svg-common;
+	background-position: 75.86206896551724% 32.8125%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-facebook-logo {
+	background-position: 75.86206896551724% 32.8125%;
+}
+@mixin svg-image-facebook-logo-hover {
+	.svg-image-facebook-logo {
+		@include svg-pos-image-facebook-logo-hover
+	}
+}
+
+.svg-image-facebook-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-facebook-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-fingerprint {
+	@extend %svg-common;
+	background-position: 0 0;
+	background-size: math.div(216, 66)*100% auto;
+	width: 66px;
+
+}
+@mixin svg-pos-image-fingerprint {
+	background-position: 0 0;
+}
+@mixin svg-image-fingerprint-hover {
+	.svg-image-fingerprint {
+		@include svg-pos-image-fingerprint-hover
+	}
+}
+
+.svg-image-fingerprint:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(66, 66)*100%;
+}
+
+.svg-image-fingerprint-dims {
+	width: 66px;
+	height: 66px;
+}
+
+.svg-image-guard {
+	@extend %svg-common;
+	background-position: 40.25974025974026% 61.111111111111114%;
+	background-size: math.div(216, 62)*100% auto;
+	width: 62px;
+
+}
+@mixin svg-pos-image-guard {
+	background-position: 40.25974025974026% 61.111111111111114%;
+}
+@mixin svg-image-guard-hover {
+	.svg-image-guard {
+		@include svg-pos-image-guard-hover
+	}
+}
+
+.svg-image-guard:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(62, 62)*100%;
+}
+
+.svg-image-guard-dims {
+	width: 62px;
+	height: 62px;
+}
+
+.svg-image-heartsun {
+	@extend %svg-common;
+	background-position: 44% 0;
+	background-size: math.div(216, 66)*100% auto;
+	width: 66px;
+
+}
+@mixin svg-pos-image-heartsun {
+	background-position: 44% 0;
+}
+@mixin svg-image-heartsun-hover {
+	.svg-image-heartsun {
+		@include svg-pos-image-heartsun-hover
+	}
+}
+
+.svg-image-heartsun:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(66, 66)*100%;
+}
+
+.svg-image-heartsun-dims {
+	width: 66px;
+	height: 66px;
+}
+
+.svg-image-instagram-logo {
+	@extend %svg-common;
+	background-position: 75.86206896551724% 65.625%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-instagram-logo {
+	background-position: 75.86206896551724% 65.625%;
+}
+@mixin svg-image-instagram-logo-hover {
+	.svg-image-instagram-logo {
+		@include svg-pos-image-instagram-logo-hover
+	}
+}
+
+.svg-image-instagram-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-instagram-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-ok-logo {
+	@extend %svg-common;
+	background-position: 0 100%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-ok-logo {
+	background-position: 0 100%;
+}
+@mixin svg-image-ok-logo-hover {
+	.svg-image-ok-logo {
+		@include svg-pos-image-ok-logo-hover
+	}
+}
+
+.svg-image-ok-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-ok-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-swiper-arrow {
+	@extend %svg-common;
+	background-position: 93.54838709677419% 30%;
+	background-size: math.div(216, 30)*100% auto;
+	width: 30px;
+
+}
+@mixin svg-pos-image-swiper-arrow {
+	background-position: 93.54838709677419% 30%;
+}
+@mixin svg-image-swiper-arrow-hover {
+	.svg-image-swiper-arrow {
+		@include svg-pos-image-swiper-arrow-hover
+	}
+}
+
+.svg-image-swiper-arrow:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(30, 30)*100%;
+}
+
+.svg-image-swiper-arrow-dims {
+	width: 30px;
+	height: 30px;
+}
+
+.svg-image-telegram-logo {
+	@extend %svg-common;
+	background-position: 24.137931034482758% 100%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-telegram-logo {
+	background-position: 24.137931034482758% 100%;
+}
+@mixin svg-image-telegram-logo-hover {
+	.svg-image-telegram-logo {
+		@include svg-pos-image-telegram-logo-hover
+	}
+}
+
+.svg-image-telegram-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-telegram-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-tiktok-logo {
+	@extend %svg-common;
+	background-position: 48.275862068965516% 100%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-tiktok-logo {
+	background-position: 48.275862068965516% 100%;
+}
+@mixin svg-image-tiktok-logo-hover {
+	.svg-image-tiktok-logo {
+		@include svg-pos-image-tiktok-logo-hover
+	}
+}
+
+.svg-image-tiktok-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-tiktok-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-twitter-logo {
+	@extend %svg-common;
+	background-position: 72.41379310344827% 100%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-twitter-logo {
+	background-position: 72.41379310344827% 100%;
+}
+@mixin svg-image-twitter-logo-hover {
+	.svg-image-twitter-logo {
+		@include svg-pos-image-twitter-logo-hover
+	}
+}
+
+.svg-image-twitter-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-twitter-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+.svg-image-vk-logo {
+	@extend %svg-common;
+	background-position: 100% 0;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-vk-logo {
+	background-position: 100% 0;
+}
+@mixin svg-image-vk-logo-hover {
+	.svg-image-vk-logo {
+		@include svg-pos-image-vk-logo-hover
+	}
+}
+
+.svg-image-vk-logo:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-vk-logo-dims {
+	width: 42px;
+	height: 42px;
+}
+
+
+.image-by-height { width:auto; }
+.image-by-height:before { content:none; }
+.image-by-height > svg { height: inherit; }
+.image-by-height > img { height: inherit !important; vertical-align: top !important; margin: 0 !important; padding: 0 !important; max-width: none !important; max-height: none !important; border: 0 !important; opacity: 0 !important; }
