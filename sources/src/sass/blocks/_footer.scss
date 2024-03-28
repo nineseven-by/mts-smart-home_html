@@ -26,6 +26,9 @@
     input[type="email"], input[type="text"] {
       margin-bottom: rem(12);
     }
+    @include media-breakpoint-up(xl) {
+      width: rem(774);
+    }
     .input {
       &--checkbox {
         margin-bottom: rem(10);

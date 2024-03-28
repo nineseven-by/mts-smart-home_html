@@ -1,44 +1,42 @@
 footer.page-footer
   .container-fluid
-    .row.page-footer__middle
-      .col-sm-6.col-xl-9.col-xxl-10.col-md-7
-        .row            
-          .page-footer__subscribe.subscribe 
-            h3.subscribe__title Будьте в курсе выгодных предложений — подпишитесь на&nbsp;рассылку МТС
-            form.subscribe__form(action="#", method="POST")
-              .subscribe__inner 
-                input#email(type="email", name="client-email", placeholder="Введите свой е-mail")
-                .input--checkbox 
-                  input#sub-news(type="checkbox", name="sub-news", checked)
-                  label(for="sub-news") Подписаться на новости
-                .input--checkbox 
-                  input#sub-promo(type="checkbox", name="sub-promo")
-                  label(for="sub-promo") Подписаться на акции
-              button.btn.btn_red.subscribe__submit(type="submit") Подписаться 
-          .page-footer__social.social-list
-            h3.page-footer__subtitle.social-list__subtitle Поделиться в 
-            ul.social-list__list
-              li.social-list__item
-                a.social-list__link(href="#", title="Instagram", aria-label="Instagram") 
-                  +use('instagram-logo', 40, 40)
-              li.social-list__item
-                a.social-list__link(href="#", title="Facebook", aria-label="Facebook") 
-                  +use('facebook-logo', 40, 40)
-              li.social-list__item
-                a.social-list__link(href="#", title="VK", aria-label="VK") 
-                  +use('vk-logo', 40, 40)
-              li.social-list__item
-                a.social-list__link(href="#", title="Одноклассники", aria-label="Одноклассники") 
-                  +use('ok-logo', 40, 40)
-              li.social-list__item
-                a.social-list__link(href="#", title="Twitter", aria-label="Twitter") 
-                  +use('twitter-logo', 40, 40)
-              li.social-list__item
-                a.social-list__link(href="#", title="Telegram", aria-label="Telegram") 
-                  +use('telegram-logo', 40, 40)
-              li.social-list__item
-                a.social-list__link(href="#", title="TikTok", aria-label="TikTok") 
-                  +use('tiktok-logo', 40, 40)
+    .row.page-footer__middle            
+      .page-footer__subscribe.subscribe 
+        h3.subscribe__title Будьте в курсе выгодных предложений — подпишитесь на&nbsp;рассылку МТС
+        form.subscribe__form(action="#", method="POST")
+          .subscribe__inner 
+            input#email(type="email", name="client-email", placeholder="Введите свой е-mail")
+            .input--checkbox 
+              input#sub-news(type="checkbox", name="sub-news", checked)
+              label(for="sub-news") Подписаться на новости
+            .input--checkbox 
+              input#sub-promo(type="checkbox", name="sub-promo")
+              label(for="sub-promo") Подписаться на акции
+          button.btn.btn_red.subscribe__submit(type="submit") Подписаться 
+      .page-footer__social.social-list
+        h3.page-footer__subtitle.social-list__subtitle Поделиться в 
+        ul.social-list__list
+          li.social-list__item
+            a.social-list__link(href="#", title="Instagram", aria-label="Instagram") 
+              +use('instagram-logo', 40, 40)
+          li.social-list__item
+            a.social-list__link(href="#", title="Facebook", aria-label="Facebook") 
+              +use('facebook-logo', 40, 40)
+          li.social-list__item
+            a.social-list__link(href="#", title="VK", aria-label="VK") 
+              +use('vk-logo', 40, 40)
+          li.social-list__item
+            a.social-list__link(href="#", title="Одноклассники", aria-label="Одноклассники") 
+              +use('ok-logo', 40, 40)
+          li.social-list__item
+            a.social-list__link(href="#", title="Twitter", aria-label="Twitter") 
+              +use('twitter-logo', 40, 40)
+          li.social-list__item
+            a.social-list__link(href="#", title="Telegram", aria-label="Telegram") 
+              +use('telegram-logo', 40, 40)
+          li.social-list__item
+            a.social-list__link(href="#", title="TikTok", aria-label="TikTok") 
+              +use('tiktok-logo', 40, 40)
       //-.col-sm-6.col-md-5.col-xl-3.col-xxl-2.page-footer__portal-rating.portal-rating
         .portal-rating__wrapper 
           a.portal-rating__link(href="http://xn----7sbgfh2alwzdhpc0c.xn--90ais/") 

@@ -6,6 +6,14 @@
       padding: rem(40) 0;
     }
   }
+  &-default {
+    &__title {
+      margin-bottom: rem(20);
+      @include media-breakpoint-up(xl) {
+        margin-bottom: rem(32);
+      }
+    }
+  }
   &__header {
     display: flex;
     align-items: center;
