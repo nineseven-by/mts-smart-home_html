@@ -33,6 +33,35 @@
 	height: 42px;
 }
 
+.svg-image-arrow {
+	@extend %svg-common;
+	background-position: 91.57894736842105% 50%;
+	background-size: math.div(216, 26)*100% auto;
+	width: 26px;
+
+}
+@mixin svg-pos-image-arrow {
+	background-position: 91.57894736842105% 50%;
+}
+@mixin svg-image-arrow-hover {
+	.svg-image-arrow {
+		@include svg-pos-image-arrow-hover
+	}
+}
+
+.svg-image-arrow:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(26, 26)*100%;
+}
+
+.svg-image-arrow-dims {
+	width: 26px;
+	height: 26px;
+}
+
 .svg-image-automatization {
 	@extend %svg-common;
 	background-position: 0 61.111111111111114%;

@@ -13,6 +13,10 @@
     margin-top: rem(24);
   }
   &__subtitle {
+    text-align: center;
+    @include media-breakpoint-up(md) {
+      text-align: left;
+    }
     @media (max-width: em(1399)){
       margin-left: rem(50);
     }
@@ -23,6 +27,10 @@
   &__list {
     display: flex;
     margin-top: rem(20);
+    justify-content: center;
+    @include media-breakpoint-up(md) {
+      justify-content: flex-start;
+    }
     @media (max-width: em(1399)){
       margin-left: rem(50);
     }

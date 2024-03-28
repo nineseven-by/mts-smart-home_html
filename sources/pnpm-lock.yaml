@@ -8,6 +8,12 @@ dependencies:
   bootstrap:
     specifier: 5.3.2
     version: 5.3.2(@popperjs/core@2.11.8)
+  gsap:
+    specifier: ^3.12.5
+    version: 3.12.5
+  jquery:
+    specifier: ^3.7.1
+    version: 3.7.1
   swiper:
     specifier: ^11.0.7
     version: 11.0.7
@@ -5045,6 +5051,10 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
+  /gsap@3.12.5:
+    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
+    dev: false
+
   /gulp-add-src@1.0.0:
     resolution: {integrity: sha512-wmqf71/V/W4Ffi9lduaWAgNFcJW60TRqgc2lRv94d6I7j4rjHtVMHjnbwDH8RF0czGfJqYbs+ruecZXmwJopCQ==}
     dependencies:
@@ -6282,6 +6292,10 @@ packages:
       bin-build: 3.0.0
       bin-wrapper: 4.1.0
     dev: true
+
+  /jquery@3.7.1:
+    resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
+    dev: false
 
   /js-stringify@1.0.2:
     resolution: {integrity: sha512-rtS5ATOo2Q5k1G+DADISilDA6lv79zIiwFd6CcjuIxGKLFm5C+RLImRscVap9k55i+MOZwgliw+NejvkLuGD5g==}

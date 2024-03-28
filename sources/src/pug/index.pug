@@ -32,7 +32,7 @@ block page
                   .card-image--1
                     img(src="./images/pages/smarthome/categories/light-1.webp", alt="Яндекс.Лампа Е27")
                   .card-image--2
-                    img(src="./images/pages/smarthome/categories/light-1.webp", alt="Яндекс.Лампа Е14")
+                    img(src="./images/pages/smarthome/categories/light-2.webp", alt="Яндекс.Лампа Е14")
             li.smarthome-cards__item.smarthome-cards__item--safe
               a.card-smarthome.card-smarthome--safe(href="#")
                 .card-smarthome__content
@@ -51,14 +51,14 @@ block page
                     img(src="./images/pages/smarthome/categories/kitchen-1.webp", alt="Умная Колонка с Алисой")
                   .card-image--2
                     img(src="./images/pages/smarthome/categories/kitchen-2.webp", alt="Чайник Xiaomi")
-            li.smarthome-cards__item.smarthome-cards__item--default
+            li.smarthome-cards__item.smarthome-cards__item--intellect.smarthome-cards__item--default
               a.card-smarthome.card-smarthome--default(href="#")
                 .card-smarthome__icon 
                   +use("fingerprint", 64, 64)
                 .card-smarthome__content
                   h3.card-smarthome__title Интеллектуальные системы управления
                   p.card-smarthome__description Полностью автоматизируйте управление вашим домом с помощью интеллектуальных систем управления.
-            li.smarthome-cards__item.smarthome-cards__item--default
+            li.smarthome-cards__item.smarthome-cards__item--climat.smarthome-cards__item--default
               a.card-smarthome.card-smarthome--default(href="#")
                 .card-smarthome__icon 
                   +use("heartsun", 64, 64)
@@ -328,29 +328,14 @@ block page
                     .smart-pagination__wrapper 
                       ul.smart-pagination__list 
                         li.smart-pagination__item 
-                          button.smart-pagination__btn 
+                          button.smart-pagination__btn(aria-label="К примеру №1", title="К примеру №1") 
                             span 1
                         li.smart-pagination__item 
-                          button.smart-pagination__btn.active 
+                          button.smart-pagination__btn.active(aria-label="К примеру №2", title="К примеру №2") 
                             span 2
                         li.smart-pagination__item 
-                          button.smart-pagination__btn 
+                          button.smart-pagination__btn(aria-label="К примеру №3", title="К примеру №3") 
                             span 3
-                        //-li.smart-pagination__item 
-                        //-  button.smart-pagination__btn 4
-                        //-li.smart-pagination__item 
-                        //-  button.smart-pagination__btn 5
-                        //-li.smart-pagination__item 
-                        //-  button.smart-pagination__btn 6
-                        li.smart-pagination__item 
-                          button.smart-pagination__btn 
-                            span 7
-                        li.smart-pagination__item 
-                          button.smart-pagination__btn 
-                            span 8
-                        li.smart-pagination__item 
-                          button.smart-pagination__btn 
-                            span 9
   .space.space--default
   section#smarthome-advantages.section.section--gray 
     .container-fluid 
@@ -430,10 +415,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -445,10 +430,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -481,10 +466,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -496,10 +481,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -532,10 +517,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -547,10 +532,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -583,10 +568,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -598,10 +583,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -634,10 +619,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -649,10 +634,10 @@ block page
                             .smartpopular-item__content
                               h3.smartpopular-item__title Xiaomi Smart Camera C300
                               p.smartpopular-item__price 
-                                span.color-red от 6,5 руб./мес.
+                                span.color-red от <strong>6,5</strong> руб./мес.
                                 small При покупке в рассрочку
                               p.smartpopular-item__price 
-                                span.color-black от 6,5 руб./мес.
+                                span.color-black от <strong>6,5</strong> руб./мес.
                                 small При разовой оплате
                               .smartpopular-item__btns 
                                 button.btn.btn_black(data-popup-order) Купить
@@ -693,6 +678,7 @@ block page
                   .card__content 
                     h3.card__title Лампа светодиодная Яндекс.Лампа 3. Е27
                     p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+              .swiper-slide
                 article.card.card--review
                   .card__header
                     .card__author
@@ -708,6 +694,7 @@ block page
                   .card__content 
                     h3.card__title Очиститель воздуха Xiaomi Smart Air Purifier 4 Compact
                     p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+              .swiper-slide
                 article.card.card--review
                   .card__header
                     .card__author
@@ -723,6 +710,7 @@ block page
                   .card__content 
                     h3.card__title Электрочайник Xiaomi Mi Smart Kettle Pro MJHWSH02YM (белый)
                     p.card__text Я считаю, что мтс это очень хороший продукт, это шанс молодым семьям и не только приобрести квартиру своей мечты, для тех кто не может самостоятельно накопить первоначальный взнос либо снимает и все
+              .swiper-slide
                 article.card.card--review
                   .card__header
                     .card__author

@@ -1,0 +1,89 @@
+.key {
+  &__wrapper {
+    background: $light-gray;
+    border-radius: rem(32);
+    display: flex;
+    flex-direction: column;
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    @include media-breakpoint-up(xl) {
+      border-radius: rem(40);
+    }
+  }
+  h1 {
+    font-size: rem(20);
+    line-height: math.div(24 , 20);
+    text-align: center;
+    margin-bottom: rem(20);
+    @include media-breakpoint-up(md) {
+      text-align: left;
+      margin-bottom: rem(24);
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: rem(32);
+      //line-height: math.div( , );
+    }
+  }
+  &__image {
+    order: -1;
+    border-radius: rem(24);
+    overflow: hidden;
+    height: rem(240);
+    //margin-bottom: rem(20);
+    img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: unset;
+      margin: 0;
+    }
+    @include media-breakpoint-up(md) {
+      width: 50%;
+      width: 66.2%;
+      flex-shrink: 0;
+      order: unset;
+      min-height: 100%;
+      height: unset;
+    }
+    @include media-breakpoint-up(xl) {
+      border-radius: rem(40);
+    }
+  }
+  &__content {
+    padding: rem(20);
+    display: flex;
+    flex-direction: column;
+    @include media-breakpoint-up(md) {
+      width: 32.46%;
+    }
+    @include media-breakpoint-up(lg) {
+      padding: rem(40) rem(24) rem(40) rem(40);
+      margin-right: rem(20);
+    }
+  }
+  &__description {
+    color: $gray;
+    text-align: center;
+    margin-bottom: rem(20);
+    @include media-breakpoint-up(md) {
+      text-align: left;
+    }
+  }
+  &__footer {
+    //margin-top: rem(20);
+    margin-top: auto;
+  }
+  &__btn {
+    //text-align: center;
+    //justify-content: center;
+    width: 100%;
+    padding-left: rem(12);
+    padding-right: rem(12);
+    @include media-breakpoint-up(sm) {
+      padding-left: rem(16);
+      padding-right: rem(16);
+    }
+  }
+}

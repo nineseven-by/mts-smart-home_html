@@ -1,0 +1,34 @@
+.swiper {
+  &-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: $light-gray;
+    border: unset;
+    width: rem(48);
+    height: rem(48);
+    border-radius: 50%;
+    transition: all .2s ease;
+    &:hover {
+      background: $light-gray-hover;
+    }
+    &.swiper-button-disabled, &:disabled {
+      background: $light-gray;
+      border-color: $light-gray;
+      color: $wow-gray;
+      pointer-events: none;
+    }
+    &-prev {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+    &-next {
+
+    }
+    svg {
+      width: rem(22);
+      height: rem(22);
+    }
+  }
+}

@@ -1,0 +1,568 @@
+*[role="button"] {
+  cursor: pointer;
+}
+.btn {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(14) rem(28) rem(15);
+  min-height: rem(52);
+  border-radius: rem(12);
+  border: rem(2) solid $red;
+  color: $red;
+  font-weight: 600;
+  font-size: rem(16);
+  line-height: math.div(19, 16);
+  text-align: center;
+  background: $white;
+  transition: all .2s ease;
+  overflow: hidden;
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    margin: 0;
+  }
+
+  &>svg {
+    width: rem(20);
+    height: rem(20);
+  }
+
+  &:hover,
+  &:focus,
+  &.hover {
+    background: $red;
+    color: $white;
+  }
+
+  &:disabled,
+  &.disabled,
+  &.disable {
+    background: $white;
+    border-color: $wow-gray;
+    color: $wow-gray;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $white;
+    border-radius: rem(12);
+    transform: scale(0);
+    opacity: 0;
+    transition: all $transition-fast-ease;
+
+    svg path,
+    svg rect {
+      fill: $red;
+    }
+  }
+
+  &.btn {
+    &_full {
+      width: 100%;
+    }
+    &_with-icon {
+      padding: rem(14) rem(16);
+      align-items: flex-start;
+      text-align: left;
+      &.reverse {
+        flex-direction: row-reverse;
+        &>svg {
+          margin-right: rem(6);
+          margin-left: unset;
+        }
+      }
+
+      &>svg {
+        margin-left: rem(6);
+        flex-shrink: 0;
+      }
+    }
+
+    &_icon {
+      padding: rem(14);
+    }
+
+    // Цветовые
+    &_red {
+      background: $red;
+      color: $white;
+      border-color: $red;
+
+      &:hover,
+      &:focus,
+      &.hover {
+        background: #BE000B;
+        color: $white;
+        border-color: #BE000B;
+      }
+
+      &:disabled,
+      &.disabled,
+      &.disable {
+        background: $light-gray;
+        border-color: $light-gray;
+        color: $wow-gray;
+      }
+
+      .loader {
+        background: inherit;
+        svg path,
+        svg rect {
+          fill: $white;
+        }
+      }
+    }
+
+    &_white {
+      background: $white;
+      color: $black;
+      border-color: $white;
+    
+      &:hover,
+      &:focus,
+      &.hover {
+        background: $black;
+        color: $white;
+        border-color: $black;
+      }
+    
+      &:disabled,
+      &.disabled,
+      &.disable {
+        background: $light-gray;
+        border-color: $light-gray;
+        color: $wow-gray;
+      }
+    
+      .loader {
+        background: inherit;
+    
+        svg path,
+        svg rect {
+          fill: $red;
+        }
+      }
+      .layout--black & {
+        color: $black;
+        .loader {      
+          svg path,
+          svg rect {
+            fill: $black;
+          }
+        }
+      }
+      &-black {
+        color: $black;
+        background: $white;
+        border-color: $white;
+        &:hover,
+        &:focus,
+        &.hover {
+          color: $black;
+          background: $light-gray;
+          border-color: $light-gray;
+        }
+        &:disabled,
+        &.disabled,
+        &.disable {
+          background: $light-gray;
+          border-color: $light-gray;
+          color: $wow-gray;
+        }
+        .loader {
+          svg path,
+          svg rect {
+            fill: $black;
+          }
+        }
+      }
+    }
+
+    &_not-bg {
+      &:not(:hover) {
+        background: transparent;
+      }
+    }
+    &_transparent {
+      background: transparent;
+      color: $red;
+      border: none;
+      &:hover,
+      &:focus,
+      &.hover {
+        background: $light-gray;
+        color: $red;
+      }
+    
+      .loader {
+        background: inherit;
+    
+        svg path,
+        svg rect {
+          fill: $red;
+        }
+      }
+    }
+
+    &_black {
+      background: $black;
+      color: $white;
+      border-color: $black;
+
+      &:hover,
+      &:focus,
+      &.hover {
+        background: $black-black;
+        color: $white;
+        border-color: $black-black;
+      }
+
+      &:disabled,
+      &.disabled,
+      &.disable {
+        background: $wow-gray;
+        border-color: $wow-gray;
+        color: $white;
+      }
+      .loader {
+        background: inherit;
+
+        svg path,
+        svg rect {
+          fill: $white;
+        }
+      }
+    }
+
+    &_gray {
+      background: $light-gray;
+      color: $black;
+      border-color: $light-gray;
+    
+      &:hover,
+      &:focus,
+      &.hover {
+        background: $light-gray-hover;
+        color: $black;
+        border-color: $light-gray-hover;
+      }
+    
+      &:disabled,
+      &.disabled,
+      &.disable {
+        background: $light-gray;
+        border-color: $light-gray;
+        color: $wow-gray;
+      }
+
+      .loader {
+        background: inherit;
+
+        svg path,
+        svg rect {
+          fill: $black;
+        }
+      }
+    }
+    &_arrow {
+      justify-content: space-between;
+      align-items: center;
+      //padding-left: rem(12);
+      //padding-right: rem(12);
+      
+      svg {
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .btn {
+        &__arrow {
+          margin-left: rem(8);
+          width: rem(24);
+          height: rem(24);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    // Размеры
+    &_small {
+      padding: rem(10) rem(10) rem(11);
+      min-height: rem(44);
+
+      &.btn_icon {
+        padding: rem(10);
+      }
+
+      &.btn_with-icon {
+        padding: rem(10);
+      }
+    }
+    &_xsmall {
+      border: none;
+      padding: rem(8) rem(20);
+      min-height: rem(36);
+      font-size: rem(16);
+      line-height: math.div(19 , 16);
+      font-weight: 500;
+      border-radius: rem(8);
+      @include media-breakpoint-up(xxl) {
+        min-height: rem(40);
+        padding: rem(8) rem(12);
+        font-weight: 500;
+        font-size: rem(20);
+        line-height: math.div(24 , 20);
+        padding: rem(8);
+      }
+      &>img {
+        width: rem(20);
+        height: rem(20);
+        border-radius: 0;
+        margin: 0 0 0 rem(4);
+        @include media-breakpoint-up(xxl) {
+          width: rem(24);
+          height: rem(24);
+          border-radius: 0;
+          margin: 0 0 0 rem(4);
+        }
+      }
+    }
+
+    // Функционал
+    &_close {
+      width: rem(40);
+      height: rem(40);
+      min-height: unset;
+      padding: unset;
+      border-radius: rem(12);
+      border: none;
+      &::before, &::after {
+        position: absolute;
+        content: '';
+        display: block;
+        background: $black;
+        width: rem(19);
+        height: rem(2);
+        border-radius: rem(2);
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &.loading {
+    pointer-events: none;
+    .loader {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__default {
+    background: $red;
+    border: rem(1) solid $red;
+    padding: rem(8) rem(10) rem(11);
+    border-radius: rem(12);
+    height: rem(55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    font-size: rem(18);
+    line-height: math.div(36 , 18);
+    font-weight: 500;
+    transition: all .2s linear;
+    &:hover {
+      background: $red-hover;
+    }
+  }
+  &__gray {
+    display: inline-flex;
+    background: $light-gray;
+    justify-content: flex-start;
+    padding: rem(20);
+    font-weight: 500;
+    font-size: rem(17);
+    line-height: math.div(20 , 17);
+    border-radius: rem(20);
+    color: $black;
+    transition: all .3s linear;
+    &:hover {
+      background: $light-gray-hover;
+      color: $black;
+    }
+    .ic {
+      width: rem(24);
+      height: rem(24);
+    }
+    @media (max-width: em(768)){
+      background: $white;
+    }
+    @media (max-width: em(575)){
+      padding: rem(10);
+      border-radius: rem(8);
+      width: 100%;
+      .ic {
+        width: rem(20);
+        height: rem(20);
+      }
+    }
+  }
+  &_disable {
+    background: $light-gray;
+    border-color: $light-gray;
+    color: $wow-gray;
+    pointer-events: none;
+  }
+  &_ic {
+    .ic {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-right: rem(10);
+      order: -1;
+      img {
+        border-radius: unset;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+      }
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      @media (max-width: em(575)){
+        margin-right: rem(6);
+      }
+    }
+  }
+}
+
+// ICONS FOR BUTTONS
+.btn-icon {
+  &::after {
+    margin: 0 0 0 rem(6);
+  }
+  &.reverse, &.details__file {
+    &::after {
+      margin: 0 rem(6) 0 0;
+    }
+  }
+  &_download {
+    &::after {
+      content: '';
+      flex-shrink: 0;
+      display: block;
+      width: rem(20);
+      height: rem(20);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.8145 3.15681C17.7919 3.17311 17.7689 3.19022 17.7456 3.20814C17.4639 3.42498 17.1994 3.71382 17.0709 4.06641C16.8917 4.55852 16.7904 5.42302 16.754 6.39409C16.7189 7.32933 16.7467 8.24196 16.7701 8.75844C16.7836 9.05719 16.7946 9.36596 16.7946 9.68159V19C16.7946 21.2091 15.0038 23 12.7946 23H6C3.79086 23 2 21.2091 2 19V5C2 2.79086 3.79086 1 6 1H17.0368C19.246 1 21.0368 2.79086 21.0368 5V19.037C21.0368 19.5893 20.5891 20.037 20.0368 20.037C19.4845 20.037 19.0368 19.5893 19.0368 19.037V5C19.0368 4.17125 18.5327 3.46023 17.8145 3.15681ZM15.3574 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H12.7946C13.8992 21 14.7946 20.1046 14.7946 19V9.68159C14.7946 9.41044 14.7852 9.13636 14.7721 8.84894C14.7475 8.3056 14.7174 7.33194 14.7554 6.31911C14.792 5.3421 14.8949 4.19672 15.1917 3.38187C15.2405 3.24786 15.2963 3.12063 15.3574 3Z' fill='%23303138'/%3E%3C/svg%3E");
+      .layout--black & {
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.8145 3.15681C17.7919 3.17311 17.7689 3.19022 17.7456 3.20814C17.4639 3.42498 17.1994 3.71382 17.0709 4.06641C16.8917 4.55852 16.7904 5.42302 16.754 6.39409C16.7189 7.32933 16.7467 8.24196 16.7701 8.75844C16.7836 9.05719 16.7946 9.36596 16.7946 9.68159V19C16.7946 21.2091 15.0038 23 12.7946 23H6C3.79086 23 2 21.2091 2 19V5C2 2.79086 3.79086 1 6 1H17.0368C19.246 1 21.0368 2.79086 21.0368 5V19.037C21.0368 19.5893 20.5891 20.037 20.0368 20.037C19.4845 20.037 19.0368 19.5893 19.0368 19.037V5C19.0368 4.17125 18.5327 3.46023 17.8145 3.15681ZM15.3574 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H12.7946C13.8992 21 14.7946 20.1046 14.7946 19V9.68159C14.7946 9.41044 14.7852 9.13636 14.7721 8.84894C14.7475 8.3056 14.7174 7.33194 14.7554 6.31911C14.792 5.3421 14.8949 4.19672 15.1917 3.38187C15.2405 3.24786 15.2963 3.12063 15.3574 3Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+      }
+    }
+    &.btn_black {
+      &::after {
+        background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.8145 3.15681C17.7919 3.17311 17.7689 3.19022 17.7456 3.20814C17.4639 3.42498 17.1994 3.71382 17.0709 4.06641C16.8917 4.55852 16.7904 5.42302 16.754 6.39409C16.7189 7.32933 16.7467 8.24196 16.7701 8.75844C16.7836 9.05719 16.7946 9.36596 16.7946 9.68159V19C16.7946 21.2091 15.0038 23 12.7946 23H6C3.79086 23 2 21.2091 2 19V5C2 2.79086 3.79086 1 6 1H17.0368C19.246 1 21.0368 2.79086 21.0368 5V19.037C21.0368 19.5893 20.5891 20.037 20.0368 20.037C19.4845 20.037 19.0368 19.5893 19.0368 19.037V5C19.0368 4.17125 18.5327 3.46023 17.8145 3.15681ZM15.3574 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H12.7946C13.8992 21 14.7946 20.1046 14.7946 19V9.68159C14.7946 9.41044 14.7852 9.13636 14.7721 8.84894C14.7475 8.3056 14.7174 7.33194 14.7554 6.31911C14.792 5.3421 14.8949 4.19672 15.1917 3.38187C15.2405 3.24786 15.2963 3.12063 15.3574 3Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
+      }
+    }
+  }
+}
+
+
+// OLD STRUCTURE FOR DOWNLOAD BUTTONS
+.file-download {
+  display: block;
+  max-width: max-content;
+  margin: 0 auto rem(20) 0;
+  position: relative;
+  padding: rem(20);
+  border-radius: rem(20);
+  background: $light-gray;
+  transition: all $transition-fast-ease;
+  color: $black;
+  &:hover,
+  &:focus,
+  &.hover {
+    background: $light-gray-hover;
+    color: $black;
+    border-color: $light-gray-hover;
+  }
+
+  &:disabled,
+  &.disabled,
+  &.disable {
+    background: $light-gray;
+    border-color: $light-gray;
+    color: $wow-gray;
+  }
+  &__name, &__size {
+    vertical-align: middle;
+    font-size: rem(17);
+    line-height: math.div(20 , 17);
+    font-weight: 500;
+    color: inherit;
+    &:hover, &:active {
+      color: $black;
+    }
+  }
+  &__name {
+    &::before {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+  &__size {
+    //vertical-align: middle;
+    &::before {
+      content: ' ';
+    }
+  }
+  &__icon {
+    display: inline-block;
+    margin-right: rem(6);
+    vertical-align: middle;
+    &_pdf {
+      width: rem(20);
+      height: rem(20);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.8145 3.15681C17.7919 3.17311 17.7689 3.19022 17.7456 3.20814C17.4639 3.42498 17.1994 3.71382 17.0709 4.06641C16.8917 4.55852 16.7904 5.42302 16.754 6.39409C16.7189 7.32933 16.7467 8.24196 16.7701 8.75844C16.7836 9.05719 16.7946 9.36596 16.7946 9.68159V19C16.7946 21.2091 15.0038 23 12.7946 23H6C3.79086 23 2 21.2091 2 19V5C2 2.79086 3.79086 1 6 1H17.0368C19.246 1 21.0368 2.79086 21.0368 5V19.037C21.0368 19.5893 20.5891 20.037 20.0368 20.037C19.4845 20.037 19.0368 19.5893 19.0368 19.037V5C19.0368 4.17125 18.5327 3.46023 17.8145 3.15681ZM15.3574 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H12.7946C13.8992 21 14.7946 20.1046 14.7946 19V9.68159C14.7946 9.41044 14.7852 9.13636 14.7721 8.84894C14.7475 8.3056 14.7174 7.33194 14.7554 6.31911C14.792 5.3421 14.8949 4.19672 15.1917 3.38187C15.2405 3.24786 15.2963 3.12063 15.3574 3Z' fill='%23303138'/%3E%3C/svg%3E");
+    }
+  }
+}

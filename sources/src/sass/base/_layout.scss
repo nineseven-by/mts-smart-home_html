@@ -30,6 +30,8 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-y: auto;
   &.fixed {
     position: fixed !important;
     //height: 100% !important;
@@ -41,6 +43,32 @@ body {
     width: 100%;
     height: fit-content;
     //height: 100vh;
+  }
+}
+
+.section {
+  overflow: hidden;
+  max-width: 100%;
+  //display: none;
+  .wrapper &:first-child {
+    margin-top: 100px;
+  }
+}
+.popups {
+  display: none;
+}
+img {
+  max-width: 100%;
+}
+.color {
+  &-red {
+    color: $red;
+  }
+  &-black {
+    color: $black;
+  }
+  &-gray {
+    color: $gray;
   }
 }
 

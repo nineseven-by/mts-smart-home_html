@@ -1,12 +1,19 @@
 @use "sass:math";
 
 @import "./base/layout";
+@import "./blocks/buttons";
 
 @import "./blocks/header";
 
 @import "./blocks/main";
 @import "./blocks/sections";
+@import "./blocks/smarthome";
+@import "./blocks/card";
 @import "./blocks/spaces";
+@import "./blocks/swiper";
+
+@import "./blocks/key";
+@import "./blocks/smart";
 
 
 

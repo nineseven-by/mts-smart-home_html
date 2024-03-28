@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const mainConfig = {
   entry: {
     main: "./main.js",
-    //optional: "./optional.js" // if need more one js file
+    back: "./back.js" // if need more one js file
   },
   output: {
     filename: "./[name].min.js",

@@ -1,5 +1,36 @@
 .section {
   &--gray {
     background: $light-gray;
+    padding: rem(20) 0;
+    @include media-breakpoint-up(xl) {
+      padding: rem(40) 0;
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: rem(20);
+    @include media-breakpoint-up(xl) {
+      margin-bottom: rem(40);
+    }
+    .section {
+      &__title {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__title {
+    text-align: center;
+    margin-bottom: rem(20);
+    span {
+      &.color-gray {
+        font-weight: 700;
+        color: $gray;
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: rem(32);
+    }
   }
 }

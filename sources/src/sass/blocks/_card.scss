@@ -1,0 +1,385 @@
+.card {
+  &-smarthome {
+    background: $white;
+    display: flex;
+    border-radius: rem(20);
+    min-height: 100%;
+    flex-direction: column;
+    position: relative;
+    z-index: 3;
+    padding: rem(20);
+    transition: transform .3s ease, box-shadow .3s ease;
+    @include media-breakpoint-up(xl) {
+      padding: rem(32);
+      box-shadow: 0px 20px 30px rgba(56, 96, 138, 0);
+      &:hover {
+        transform: translateY(rem(-12));
+        box-shadow: 0px 20px 30px rgba(56, 96, 138, 0.1);
+      }
+    }
+    img {
+      max-width: rem(500);
+    }
+    &__bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-radius: inherit;
+      overflow: hidden;
+      img {
+        border-radius: unset;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    &__content {
+      &>*:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &__title {
+      font-size: rem(16);
+      line-height: math.div(19 , 16);
+      margin-bottom: rem(12);
+      @include media-breakpoint-up(xxl) {
+        font-size: rem(24);
+        line-height: math.div(29 , 24);
+      }
+    }
+    &__description {
+      color: $gray;
+      font-size: rem(14);
+      line-height: math.div(17 , 14);
+      @include media-breakpoint-up(md) {
+        font-size: rem(16);
+        line-height: math.div(19 , 16);
+      }
+      @include media-breakpoint-up(xl) {
+        font-size: rem(18);
+        line-height: math.div(22 , 18);
+      }
+    }
+    &__icon {
+      width: rem(40);
+      height: rem(40);
+      margin-bottom: rem(12);
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+      @include media-breakpoint-up(xl) {
+        width: rem(64);
+        height: rem(64);
+      }
+    }
+    &__image {
+      position: absolute;
+    }
+    &--bg {
+      justify-content: flex-end;
+      min-height: rem(350);
+      img {
+        max-width: unset;
+        object-position: top;
+      }
+      .card {
+        &-smarthome {
+          &__title, &__description {
+            color: $white;
+          }
+        }
+      }
+      @include media-breakpoint-up(xl) {
+        min-height: 100%;
+      }
+    }
+    &--black {
+      background: $black;
+      color: $white;
+      .card {
+        &-smarthome {
+          &__icon {
+            width: rem(40);
+            height: rem(40);
+            color: $white;
+          }
+          &__description {
+            color: $white;
+          }
+        }
+      }
+    }
+    .card-image {
+      position: absolute;
+      img {
+        object-fit: contain;
+        margin: 0;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &--light {
+      padding-bottom: rem(200);
+      overflow: hidden;
+      @include media-breakpoint-up(xl) {
+        padding-bottom: rem(32);
+      }
+      .card-image {
+        width: rem(192);
+        height: rem(250);
+        bottom: -20%;
+        right: 50%;
+        transform: translateX(50%);
+        @include media-breakpoint-up(md) {
+          
+        }
+        @include media-breakpoint-up(xl) {
+          width: rem(293);
+          height: rem(382);
+          bottom: rem(-55);
+        }
+        &--1 {
+          position: absolute;
+          width: 39.59%;
+          height: 51.04%;
+          top: 20.68%;
+          left: 0;
+        }
+        &--2 {
+          position: absolute;
+          width: 58.36%;
+          height: 100%;
+          top: 0;
+          right: 0;
+        }
+      }
+    }
+    &--kitchen {
+      padding-bottom: rem(200);
+      overflow: hidden;
+
+      @include media-breakpoint-up(xl) {
+        padding-bottom: rem(32);
+      }
+      .card-image {
+        width: rem(208);
+        height: rem(221);
+        bottom: -20%;
+        right: 50%;
+        transform: translateX(50%);
+        @include media-breakpoint-up(md) {
+          
+        }
+        @include media-breakpoint-up(xl) {
+          width: rem(248);
+          height: rem(264);
+          //width: rem(293);
+          //height: rem(382);
+          bottom: rem(-55);
+        }
+        &--1 {
+          position: absolute;
+          width: 66.12%;
+          height: 95.83%;
+          top: 0;
+          left: 0;
+        }
+        &--2 {
+          position: absolute;
+          width: 58.06%;
+          height: 78.4%;
+          bottom: 0;
+          right: 0;
+        }
+      }
+    }
+    &--safe {
+      padding-bottom: rem(200);
+      overflow: hidden;
+      @include media-breakpoint-up(md) {
+        padding-bottom: rem(32);
+        min-height: rem(277);
+        .card-smarthome {
+          &__content {
+            max-width: rem(493);
+            width: 60%;
+          }
+        }
+      }
+      @include media-breakpoint-up(xl) {
+        min-height: 100%;
+      }
+      .card-image {
+        width: rem(186);
+        height: rem(201);
+        //bottom: -20%;
+        bottom: -4%;
+        right: 50%;
+        transform: translateX(50%);
+        @include media-breakpoint-up(md) {
+          
+        }
+        @include media-breakpoint-up(md) {
+          width: rem(216);
+          height: rem(234);
+          bottom: rem(28);
+          right: rem(64);
+          transform: unset;
+        }
+        &--1 {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+        }
+      }
+    }
+    &--energy {
+      min-height: rem(350);
+      @include media-breakpoint-up(xl) {
+        min-height: rem(277);
+        .card-smarthome {
+          &__content {
+            width: 50%;
+            max-width: rem(400);
+          }
+        }
+      }
+      .card-image {
+        width: rem(229);
+        height: rem(204);
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+        //@include media-breakpoint-up(md) {
+        //  width: 29.1%;
+        //  height: 125.63%;
+        //  width: rem(310);
+        //  height: rem(277);
+        //  bottom: 0;
+        //  right: 5.23%;
+        //  transform: unset;
+          
+        //}
+        @include media-breakpoint-up(xl) {
+          //width: 29.1%;
+          //height: 125.63%;
+          width: rem(389);
+          height: rem(348);
+          bottom: 0;
+          right: 5.23%;
+          transform: unset;
+        }
+        &--1 {
+          position: absolute;
+          width: 28.02%;
+          height: 52.87%;
+          top: 4.59%;
+          left: 0;
+          transform: rotate(-13deg);
+        }
+        &--2 {
+          position: absolute;
+          width: 44.98%;
+          height: 47.41%;
+          top: 52.58%;
+          left: 31.1%;
+          transform: rotate(16deg);
+          
+        }
+        &--3 {
+          position: absolute;
+          width: 31.1%;
+          height: 51.78%;
+          top: 0;
+          left: 68.89%;
+          transform: rotate(8deg);
+          
+        }
+      }
+    }
+  }
+
+
+  &__text {
+    color: $gray;
+    @include media-breakpoint-up(xl) {
+      font-size: rem(20);
+      line-height: math.div(24 , 20);
+    }
+  }
+  &--review {
+    background: $light-gray;
+    border-radius: rem(24);
+    padding: rem(20);
+    .card {
+      &__title {
+        font-size: rem(16);
+        line-height: math.div(19 , 16);
+        font-weight: 800;
+        margin-bottom: rem(12);
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      border-radius: rem(40);
+      padding: rem(32);
+      .card {
+        &__title {
+          font-size: rem(24);
+          line-height: math.div(29 , 24);
+        }
+      }
+    }
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: rem(12);
+  }
+  &__author {
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+  }
+  &__avatar {
+    width: rem(40);
+    height: rem(40);
+    border-radius: 50%;
+    margin-right: rem(12);
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: unset;
+      margin: 0;
+    }
+  }
+  &__name {
+    font-size: rem(20);
+    line-height: math.div(24 , 20);
+    font-weight: 500;
+    color: $gray;
+  }
+  &__score {
+    display: flex;
+    align-items: center;
+    .star {
+      display: flex;
+      width: rem(24);
+      height: rem(24);
+      background-size: cover;
+      background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m11.999 0 3.258 7.515 8.154.777-6.14 5.421 1.781 7.995-7.053-4.164-7.054 4.164 1.781-7.995-6.14-5.421 8.154-.777L11.999 0Z" fill="%23E6E9F3"/></svg>');
+      &.filled {
+        background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m11.999 0 3.258 7.515 8.154.777-6.14 5.421 1.781 7.995-7.053-4.164-7.054 4.164 1.781-7.995-6.14-5.421 8.154-.777L11.999 0Z" fill="%23F8D34D"/></svg>');
+      }
+    }
+  }
+}

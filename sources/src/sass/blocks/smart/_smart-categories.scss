@@ -1,0 +1,145 @@
+.smart-categories {
+  width: 100vw;
+  //left: 50%;
+  //transform: translateX(-50%);
+  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: all .5s ease;
+  //display: none; // TODO! REMOVE
+  &__wrapper {
+    padding-top: 50vh;
+    
+    background: rgba($color: #000000, $alpha: .5);
+  }
+  &__inner {
+    padding: rem(20) rem(20) 0;
+    border-radius: rem(24) rem(24) 0px 0px;
+    background: $white;
+    //border: rem(1) solid red;
+    width: 100%;
+    height: 73.4vh;
+    
+    display: flex;
+    flex-direction: column;
+    h3 {
+      flex-shrink: 0;
+    }
+    @include media-breakpoint-up(xl) {
+      padding-left: rem(32);
+      padding-right: rem(32);
+      padding-top: rem(24);
+    }
+  }
+  &__body {
+    flex-grow: 1;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    width: 35.73%;
+    width: rem(600);
+    left: unset;
+    transform: unset;
+    right: rem(24);
+    top: rem(24);
+    bottom: rem(24);
+    position: absolute;
+    transform: unset;
+    overflow: hidden;
+    &__wrapper {
+      background: unset;
+      padding-top: unset;
+      height: 100%;
+    }
+    &__inner {
+      border-radius: rem(24);
+      height: 100%;
+
+    }
+  }
+  @media (min-width:em(1280)){
+    &__inner {
+      
+      padding: rem(32);
+    }
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: min-content;
+    row-gap: rem(8);
+    padding-bottom: rem(20);
+    width: 100%;
+  }
+  &__item {
+    display: flex;
+    width: 100%;
+  }
+  &__btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: rem(20) rem(20) rem(20) rem(120);
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: $light-gray;
+    border-radius: rem(16);
+    font-size: rem(16);
+    line-height: math.div(19 , 16);
+    font-weight: 700;
+    transition: all .2s ease;
+    color: $black;
+    &:hover {
+      background: $light-gray-hover;
+      .smart-categories {
+        &__arrow {
+          transform: translateX(rem(6));
+          color: #393E48;
+        }
+      }
+    }
+  }
+  &__image {
+    position: absolute;
+    width: rem(80);
+    height: auto;
+    top: 0;
+    left: rem(20);
+    img, svg {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+  &__text {
+    flex-grow: 1;
+    text-align: left;
+  }
+  &__arrow {
+    width: rem(24);
+    height: rem(24);
+    flex-shrink: 0;
+    color: $wow-gray;
+    transition: all .2s ease;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
