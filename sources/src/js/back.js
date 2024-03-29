@@ -47,8 +47,6 @@ $(function() {
         e.preventDefault();
         const commentText = $('#popup-comment').val().trim();
 
-        console.info($('#popup-phone').val(), $('#popup-client').val())
-
         $.ajax({
             "url": "/request-order",
             "method": "POST",
