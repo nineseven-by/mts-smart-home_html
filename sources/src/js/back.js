@@ -5,34 +5,30 @@ $(function() {
     $('.subscribe__form').on('submit', (e) => {
         e.preventDefault();
 
-        const currentFormData = $('#submitable-form__footer').serializeArray();
-          
         $.ajax({
-            "url": "http://localhost:3500/request-mailing",
+            "url": "/request-mailing",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             "data": {
-                "email": currentFormData.find(({ name }) => name === 'client-email')?.value,
-                "news": currentFormData.find(({ name }) => name === 'sub-news')?.value === 'on' ? 'true' : 'false',
-                "promotions": currentFormData.find(({ name }) => name === 'sub-promo')?.value === 'on' ? 'true' : 'false'
+                "email": $('#email').val(),
+                "news": $('#sub-news').prop('checked') ? 'true' : 'false',
+                "promotions": $('#sub-promo').prop('checked') ? 'true' : 'false'
             }
         })
 
-        $('#submitable-form__footer .subscribe__submit').text('Вы успешно подписались!');
-        $('#submitable-form__footer .subscribe__submit').attr('disabled', true);
+        $('.subscribe__form .subscribe__submit').text('Вы успешно подписались!');
+        $('.subscribe__form .subscribe__submit').attr('disabled', true);
     })
 
 
-    $('.smarthome-order__form').on('submit', (e) => {
+    $('#smarthome-order-body-form').on('submit', (e) => {
         e.preventDefault();
-
-        const form = $('.smarthome-order__form');
         const commentText = $('#comment').val().trim();
 
         $.ajax({
-            "url": "http://localhost:3500/request-consultation",
+            "url": "/request-consultation",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -44,6 +40,29 @@ $(function() {
             }
         })
 
-        $('.smarthome-order__form').html('<span style="margin-top:-25px;">Заявка успешно отправлена!</span>');
+        $('#smarthome-order-body-form').html('<span style="margin-top:-25px;">Заявка успешно отправлена!</span>');
+    })
+
+    $('#smarthome-order-popup-form').on('submit', (e) => {
+        e.preventDefault();
+        const commentText = $('#popup-comment').val().trim();
+
+        console.info($('#popup-phone').val(), $('#popup-client').val())
+
+        $.ajax({
+            "url": "/request-order",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+                "phone": $('#popup-phone').val(),
+                "name": $('#popup-client').val(),
+                "good": $('#popup-id').val(),
+                "comment": commentText === '' ? null : commentText,
+            }
+        })
+
+        $('.popup__body').html('<span>Заявка успешно отправлена!</span>');
     })
 })
