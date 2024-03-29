@@ -1,4 +1,3 @@
-
 //Percent
 @function percent($px, $from) {
   $result: math.div($px, $from) * 100%;
@@ -7,13 +6,13 @@
 
 //REM
 @function rem($px) {
-  $result: math.div($px, 16)+rem;
+  $result: math.div($px, 16) + rem;
   @return $result;
 }
 
 //EM
 @function em($px, $current: 16) {
-  $result: math.div($px, $current)+em;
+  $result: math.div($px, $current) + em;
   @return $result;
 }
 
@@ -34,8 +33,6 @@
     @content;
   }
 }
-
-
 
 @mixin lg {
   @media (min-width: 1300px) and (max-width: 1599px) {
@@ -61,30 +58,25 @@
   }
 }
 
-
 @mixin font-face($font-name, $font-file) {
   @font-face {
-    font-family: '#{$font-name}';
+    font-family: "#{$font-name}";
     font-display: swap;
-    src: url('../fonts/#{$font-file}.woff') format('woff'),
-    url('../fonts/#{$font-file}.woff2') format('woff2');
+    src: url("../fonts/#{$font-file}.woff") format("woff"), url("../fonts/#{$font-file}.woff2") format("woff2");
   }
 }
-
 
 // Fluid fonts
 // See https://habr.com/post/310186/
 // Also check _layout.sass, fix for Safari is required
 
 @function strip-unit($number) {
-  @if type-of($number)=='number' and not unitless($number) {
+  @if type-of($number) == "number" and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
 
   @return $number;
 }
-
-
 
 @function calcFluidFontSize($f-min, $f-max, $w-min, $w-max, $units: px) {
   $f-min: strip-unit($f-min);
@@ -92,7 +84,7 @@
   $w-min: strip-unit($w-min);
   $w-max: strip-unit($w-max);
 
-  $k: ($f-max - $f-min)/($w-max - $w-min);
+  $k: ($f-max - $f-min)/ ($w-max - $w-min);
   $b: $f-min - $k * $w-min;
 
   $b: $b + $units;
@@ -130,7 +122,7 @@
   position: $position;
   @supports not (aspect-ratio: 1 / 1) {
     &::before {
-      content: '';
+      content: "";
       display: block;
       width: 100%;
       padding-top: calc(100% * #{$height} / #{$width});
@@ -141,7 +133,9 @@
 @mixin image-ratio($width, $height, $position: "relative", $fit: "cover") {
   @include before-ratio($width, $height, $position);
   //overflow: hidden;
-  picture, img, svg {
+  picture,
+  img,
+  svg {
     position: absolute;
     top: 0;
     left: 0;

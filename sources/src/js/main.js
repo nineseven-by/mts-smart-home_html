@@ -12,8 +12,12 @@ import {
   Controller
 } from "swiper/modules";
 import { Tabs } from "./_tabs.js";
+import gsap from "gsap";
 
-
+let vh;
+let widthScrollBar;
+let mainPopups;
+let isBodyFixed = false;
 const debounce = (callback, wait) => {
   let timeoutId = null;
   return (...args) => {
@@ -96,6 +100,8 @@ const bodyFix = (value) => {
 
 document.addEventListener("DOMContentLoaded", function(event) {
   // Your code here
+  checkWidthScrollBar();
+  checkVH();
   const sliderContainers = Array.from(document.querySelectorAll("[data-slider-container]"));
   sliderContainers.forEach((container) => {
     const swiperElement = container.querySelector(".swiper");
@@ -146,7 +152,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const tabs = Array.from(document.querySelectorAll(".tabs"));
   tabs.forEach((tabsWrapper) => {
     new Tabs(tabsWrapper);
-  })
+  });
+  if (document.querySelector(".popups")) {
+    const popupsWrapper = document.querySelector(".popups");
+    mainPopups = new Popups(popupsWrapper, bodyFixPosition, bodyUnfixPosition);
+  }
+
+  if (document.querySelector("#popup-item")) {
+    const popup = document.querySelector("#popup-item");
+    const popupNameElem = popup.querySelector("[data-good-name]");
+    const popupImgElem = popup.querySelector("[data-good-preview]");
+    const popupIdElem = popup.querySelector("[data-good-name-input]");
+    const items = Array.from(document.querySelectorAll("[data-good-id]"));
+    console.log(items)
+    items.forEach((item) => {
+      const itemNameElem = item.querySelector(".smartpopular-item__title");
+      const itemImgElem = item.querySelector(".smartpopular-item__image img");
+      const btn = item.querySelector("[data-popup-order]");
+      btn.addEventListener("click", (e) => {
+        popupNameElem.innerText = itemNameElem.innerText;
+        popupImgElem.alt = itemImgElem.alt;
+        popupImgElem.src = itemImgElem.src;
+        popupIdElem.value = itemNameElem.innerText;
+        console.log(popupIdElem.value)
+        openPopup("popup-item");
+      });
+    })
+  }
+
+
+  const funcOnResize = debounce((isWidth) => {
+    checkVH();
+    checkWidthScrollBar();
+  }, 250);
+  let innerW = window.innerWidth;
+  window.addEventListener("resize", () => {
+    if (window.innerWidth !== innerW) {
+      if (isBodyFixed) checkBodyFix();
+    }
+    funcOnResize();
+  });
 });
 
 
@@ -507,10 +552,11 @@ class SmartLocations {
     this.addEvents();
   }
   setRuCountGroups(elem, value) {
-    let endWord = "товар";
+    //let endWord = "товар";
     //const lastDigit = value % 10;
-    endWord = getNoun(value, endWord, `${endWord}а`, `${endWord}ов`)
-    elem.innerText = `${value} ${endWord}`;
+    //endWord = getNoun(value, endWord, `${endWord}а`, `${endWord}ов`)
+    //elem.innerText = `${value} ${endWord}`;
+    elem.innerText = ` (${value})`;
   }
   //updateValues()
   changeLocation(id) {
@@ -690,5 +736,191 @@ class SmartGood {
 
 }
 
+class Popups {
+  constructor(wrapper, fixBodyFunc, unfixBodyFunc) {
+    this.fixBody = fixBodyFunc;
+    this.unfixBody = unfixBodyFunc;
+    this.isOpen = false;
+    this.wrapper = wrapper;
+    this.popups = Array.from(wrapper.querySelectorAll('.popup')).map((popup) => new Popup(popup, this));
+    this.openedPopup = null;
+    this.backPopups = [];
+
+    this.tl = gsap.timeline({
+      onReverseComplete: () => {
+        if (this.backPopups.length > 0) {
+          this.backPopups.forEach((popup) => popup.close());
+          while (this.backPopups.length > 0) {
+            this.backPopups.pop();
+          }
+        }
+      }
+    });
+    this.tl.paused(true);
+    this.tl.fromTo(this.wrapper, {
+      y: '100vh'
+    }, {
+      duration: 0.1,
+      y: 0
+    });
+    this.tl.to(this.wrapper, {
+      duration: .2,
+      opacity: 1
+    }, '>');
+
+
+    this.events();
+  }
+
+  open() {
+    this.isOpen = true;
+    this.fixBody();
+    this.wrapper.classList.add('opened');
+    this.tl.play();
+  }
+  close() {
+    this.openedPopup.close();
+    this.openedPopup = null;
+    this.isOpen = false;
+    this.wrapper.classList.remove('opened');
+    this.unfixBody();
+    this.tl.reverse();
+  }
+  backPopup(popup) {
+    const prevPopup = this.backPopups[this.backPopups.length - 1];
+    popup.close();
+    prevPopup.toReturn();
+    this.openedPopup = prevPopup;
+    this.backPopups.pop();
+  }
+  openPopup(popup) {
+    if (!this.isOpen) {
+      this.open();
+      this.openedPopup = popup;
+      popup.open();
+    } else {
+      this.openedPopup.toBack();
+      this.backPopups.push(this.openedPopup);
+      this.openedPopup = popup;
+      popup.open();
+    }
+  }
+  openIdPopup(id) {
+    this.popups.forEach((popup) => {
+      if (popup.name === id) {
+        this.openPopup(popup);
+      }
+    });
+  }
+  closePopup() {
+    if (this.isOpen) this.close();
+  }
+
+  events() {
+    this.wrapper.addEventListener('click', (e) => {
+      if (e.target === this.wrapper) this.close();
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target.closest("[data-popup]") && !e.target.closest(".swiper-btn")) {
+        if (e.target.closest("[data-popup]").tagName === "A") e.preventDefault();
+        this.openIdPopup(e.target.closest("[data-popup]").dataset.popup);
+      }
+    });
+    //window.addEventListener('resize', () => {
+    //  if (this.isOpen) this.close();
+    //});
+  }
+}
+class Popup {
+  constructor(popup, parent) {
+    this.parent = parent;
+    this.popup = popup;
+    this.header = popup.querySelector('.popup__header');
+    this.body = popup.querySelector('.popup__body');
+    this.closeBtn = popup.querySelector('.popup__close');
+    this.backBtn = popup.querySelector('.popup__back');
+    this.name = popup.id;
+    this.buttons = Array.from(document.querySelectorAll(`[data-popup="${this.name}"]`));
+    this.isOpen = false;
+    this.addCloseBtns = [];
+    if (popup.querySelectorAll("[data-close]")) {
+      this.addCloseBtns = Array.from(popup.querySelectorAll("[data-close]"));
+    }
+    this.events();
+  }
+
+  toBack() {
+    this.popup.classList.remove('popup-open');
+    this.popup.classList.add('popup-back');
+  }
+
+  toReturn() {
+    if (this.popup.classList.contains('popup-back')) this.popup.classList.remove('popup-back');
+    if (!this.popup.classList.contains('popup-open')) this.popup.classList.add('popup-open');
+  }
+
+  open() {
+    let headerScrollHeight = this.header ? this.header.scrollHeight : 0;
+    let bodyScrollHeight = this.body ? this.body.scrollHeight : 0;
+    if (window.innerHeight < (headerScrollHeight + bodyScrollHeight)) {
+      this.popup.classList.add('popup_overflow');
+    }
+    this.popup.classList.add('popup-open');
+    //if (this.popup)
+  }
+
+  close() {
+    if (this.popup.classList.contains('popup-back')) this.popup.classList.remove('popup-back');
+    if (this.popup.classList.contains('popup-open')) this.popup.classList.remove('popup-open');
+    if (this.popup.classList.contains('popup_overflow')) this.popup.classList.remove('popup_overflow');
+  }
+
+  events() {
+    //this.buttons.forEach((button) => {
+    //  button.addEventListener('click', () => {
+    //    this.parent.openPopup(this);
+    //  });
+    //});
+    if (this.backBtn) {
+      this.backBtn.addEventListener("click", () => {
+        this.parent.backPopup(this);
+      });
+    }
+    this.closeBtn.addEventListener('click', () => {
+      this.parent.closePopup();
+    });
+    this.parent.wrapper.addEventListener("click", (e) => {
+      if (e.target.closest("[data-close]")) this.parent.closePopup();
+    })
+    //if (this.addCloseBtns.length > 0) {
+    //  this.addCloseBtns.forEach((btn) => {
+    //    btn.addEventListener('click', () => {
+    //      this.parent.closePopup();
+    //    });
+    //  })
+    //}
+  }
+}
+function openPopup(id) {
+  if (mainPopups !== undefined) mainPopups.openIdPopup(id);
+}
+// Для закрытия попапа "из вне", используем функцию closeModal
+function closePopup() {
+  if (mainPopups !== undefined) mainPopups.closePopup();
+}
+
+function checkWidthScrollBar() {
+  let div = document.createElement("div");
+  div.style.overflowY = "scroll";
+  div.style.width = "50px";
+  div.style.height = "50px";
+  document.body.append(div);
+  widthScrollBar = div.offsetWidth - div.clientWidth;
+  div.remove();
+}
+function checkVH() {
+  vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
 // Your functions here
 
