@@ -2,7 +2,7 @@ import $ from "jquery";
 
 $(function() {
 
-    $('#submitable-form__footer').on('submit', (e) => {
+    $('.subscribe__form').on('submit', (e) => {
         e.preventDefault();
 
         const currentFormData = $('#submitable-form__footer').serializeArray();
