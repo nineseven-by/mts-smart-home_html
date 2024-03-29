@@ -1,12 +1,12 @@
 .space {
   &--default {
-    height: rem(20);
-    @include media-breakpoint-up(md) {
-      height: rem(30);
-    }
-    @include media-breakpoint-up(lg) {
-      height: rem(40);
-    }
+    height: rem(40);
+    //@include media-breakpoint-up(md) {
+    //  height: rem(30);
+    //}
+    //@include media-breakpoint-up(lg) {
+    //  height: rem(40);
+    //}
     @include media-breakpoint-up(xl) {
       height: rem(60);
     }

@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     background: $light-gray;
+    color: $black;
     border: unset;
     width: rem(48);
     height: rem(48);
@@ -21,6 +22,11 @@
     &-prev {
       svg {
         transform: rotate(180deg);
+      }
+      &.swiper-control__left {
+        svg {
+          transform: unset;
+        }
       }
     }
     &-next {

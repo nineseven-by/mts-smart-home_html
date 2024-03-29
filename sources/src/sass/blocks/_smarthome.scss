@@ -98,7 +98,14 @@
       }
     }
   }
-
+  
+  &-reviews {
+    &__wrapper {
+      .swiper-slide {
+        height: auto;
+      }
+    }
+  }
 
   &-order {
     display: flex;
@@ -123,6 +130,7 @@
     textarea {
       resize: none;
       height: rem(120);
+      margin: 0;
     }
     form {
       .btn {
@@ -320,6 +328,18 @@
           }
           &-prev {
             left: 0;
+          }
+          &-disabled {
+            opacity: 0;
+            pointer-events: none;
+          }
+          @include media-breakpoint-up(xl) {
+            width: rem(64);
+            height: rem(64);
+            svg {
+              width: rem(29);
+              height: rem(29);
+            }
           }
         }
       }

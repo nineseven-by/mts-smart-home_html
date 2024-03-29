@@ -1479,19 +1479,19 @@ const goods = [
   //},
 ];
 const groups = [
-  {
-    id: "hair-care-kit",
-    nameRu: "Набор инструментов для ухода за волосами",
-    image: "./images/pages/smart/categories/hair-care-kit.webp",
-    locations: [
-      {
-        id: "bath",
-        x: 1125,
-        y: 526,
-        order: 0
-      },
-    ]
-  },
+  //{
+  //  id: "hair-care-kit",
+  //  nameRu: "Набор инструментов для ухода за волосами",
+  //  image: "./images/pages/smart/categories/hair-care-kit.webp",
+  //  locations: [
+  //    {
+  //      id: "bath",
+  //      x: 1125,
+  //      y: 526,
+  //      order: 0
+  //    },
+  //  ]
+  //},
   {
     id: "shaver",
     nameRu: "Электробритва",
@@ -1505,19 +1505,19 @@ const groups = [
       },
     ]
   },
-  {
-    id: "multistyler",
-    nameRu: "Мультистайлер",
-    image: "./images/pages/smart/categories/multistyler.webp",
-    locations: [
-      {
-        id: "bath",
-        x: 750,
-        y: 412,
-        order: 0
-      },
-    ]
-  },
+  //{
+  //  id: "multistyler",
+  //  nameRu: "Мультистайлер",
+  //  image: "./images/pages/smart/categories/multistyler.webp",
+  //  locations: [
+  //    {
+  //      id: "bath",
+  //      x: 750,
+  //      y: 412,
+  //      order: 0
+  //    },
+  //  ]
+  //},
   {
     id: "hairdryer",
     nameRu: "Фен",
@@ -1646,24 +1646,24 @@ const groups = [
         y: 9,
         order: 0
       },
-      {
-        id: "living-room",
-        x: 367,
-        y: 9,
-        order: 0
-      },
-      {
-        id: "bedroom",
-        x: 1200,
-        y: 72,
-        order: 0
-      },
-      {
-        id: "bath",
-        x: 534,
-        y: 9,
-        order: 0
-      },
+      //{
+      //  id: "living-room",
+      //  x: 367,
+      //  y: 9,
+      //  order: 0
+      //},
+      //{
+      //  id: "bedroom",
+      //  x: 1200,
+      //  y: 72,
+      //  order: 0
+      //},
+      //{
+      //  id: "bath",
+      //  x: 534,
+      //  y: 9,
+      //  order: 0
+      //},
       {
         id: "garage",
         x: 737,
@@ -1808,36 +1808,36 @@ const groups = [
       },
     ]
   },
-  {
-    id: "ip-cam-complex",
-    nameRu: "Комплект беспроводной IP-камеры видеонаблюдения",
-    image: "./images/pages/smart/categories/ip-cam-complex.webp",
-    locations: [
-      {
-        id: "living-room",
-        x: 1406,
-        y: 48,
-        order: 0
-      },
-      {
-        id: "garage",
-        x: 1400,
-        y: 27,
-        order: 0
-      },
-    ]
-  },
+  //{
+  //  id: "ip-cam-complex",
+  //  nameRu: "Комплект беспроводной IP-камеры видеонаблюдения",
+  //  image: "./images/pages/smart/categories/ip-cam-complex.webp",
+  //  locations: [
+  //    {
+  //      id: "living-room",
+  //      x: 1406,
+  //      y: 48,
+  //      order: 0
+  //    },
+  //    {
+  //      id: "garage",
+  //      x: 1400,
+  //      y: 27,
+  //      order: 0
+  //    },
+  //  ]
+  //},
   {
     id: "massager",
     nameRu: "Массажер перкуссионный",
     image: "./images/pages/smart/categories/massager.webp",
     locations: [
-      {
-        id: "bedroom",
-        x: 462,
-        y: 472,
-        order: 0
-      },
+      //{
+      //  id: "bedroom",
+      //  x: 462,
+      //  y: 472,
+      //  order: 0
+      //},
       {
         id: "bath",
         x: 935,
@@ -1889,12 +1889,12 @@ const groups = [
         y: 539,
         order: 0
       },
-      {
-        id: "bedroom",
-        x: 987,
-        y: 477,
-        order: 0
-      },
+      //{
+      //  id: "bedroom",
+      //  x: 987,
+      //  y: 477,
+      //  order: 0
+      //},
     ]
   },
   {
@@ -1943,7 +1943,7 @@ const groups = [
   },
   {
     id: "tv",
-    nameRu: "Телевизор жидкокристаллический",
+    nameRu: "ЖК телевизор",
     image: "./images/pages/smart/categories/tv.webp",
     locations: [
       {
@@ -2003,18 +2003,18 @@ const groups = [
         y: 20,
         order: 0
       },
-      {
-        id: "living-room",
-        x: 717,
-        y: 9,
-        order: 0
-      },
-      {
-        id: "bedroom",
-        x: 965,
-        y: 359,
-        order: 0
-      },
+      //{
+      //  id: "living-room",
+      //  x: 717,
+      //  y: 9,
+      //  order: 0
+      //},
+      //{
+      //  id: "bedroom",
+      //  x: 965,
+      //  y: 359,
+      //  order: 0
+      //},
       {
         id: "garage",
         x: 611,
@@ -2023,19 +2023,19 @@ const groups = [
       },
     ]
   },
-  {
-    id: "vacuum",
-    nameRu: "Пылесос вертикальный",
-    image: "./images/pages/smart/categories/upright-hoover.webp",
-    locations: [
-      {
-        id: "kitchen",
-        x: 1150,
-        y: 648,
-        order: 0
-      }
-    ]
-  },
+  //{
+  //  id: "vacuum",
+  //  nameRu: "Пылесос вертикальный",
+  //  image: "./images/pages/smart/categories/upright-hoover.webp",
+  //  locations: [
+  //    {
+  //      id: "kitchen",
+  //      x: 1150,
+  //      y: 648,
+  //      order: 0
+  //    }
+  //  ]
+  //},
   {
     id: "kettles",
     nameRu: "Электрочайник",
@@ -2059,4 +2059,4 @@ document.addEventListener("DOMContentLoaded", (e) => {
     }));
   }, 0);
 });
-console.log("EXTERNAL")
+//console.log("EXTERNAL")

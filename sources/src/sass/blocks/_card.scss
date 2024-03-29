@@ -319,6 +319,7 @@
     background: $light-gray;
     border-radius: rem(24);
     padding: rem(20);
+    height: 100%;
     .card {
       &__title {
         font-size: rem(16);
@@ -354,6 +355,7 @@
     height: rem(40);
     border-radius: 50%;
     margin-right: rem(12);
+    flex-shrink: 0;
     overflow: hidden;
     img {
       width: 100%;
@@ -363,14 +365,20 @@
     }
   }
   &__name {
-    font-size: rem(20);
-    line-height: math.div(24 , 20);
+    font-size: rem(16);
+    line-height: math.div(19 , 16);
     font-weight: 500;
     color: $gray;
+    @include media-breakpoint-up(xl) {
+      font-size: rem(20);
+      line-height: math.div(24 , 20);
+    }
   }
   &__score {
     display: flex;
     align-items: center;
+    margin-left: rem(8);
+    flex-shrink: 0;
     .star {
       display: flex;
       width: rem(24);

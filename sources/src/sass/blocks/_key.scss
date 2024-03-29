@@ -1,4 +1,8 @@
 .key {
+  .not-anim {
+    opacity: 1 !important;
+    transform: unset !important;
+  }
   &__wrapper {
     background: $light-gray;
     border-radius: rem(32);
@@ -17,6 +21,7 @@
     line-height: math.div(24 , 20);
     text-align: center;
     margin-bottom: rem(20);
+    opacity: 0;
     @include media-breakpoint-up(md) {
       text-align: left;
       margin-bottom: rem(24);
@@ -67,6 +72,7 @@
     color: $gray;
     text-align: center;
     margin-bottom: rem(20);
+    opacity: 0;
     @include media-breakpoint-up(md) {
       text-align: left;
     }
@@ -74,6 +80,7 @@
   &__footer {
     //margin-top: rem(20);
     margin-top: auto;
+    opacity: 0;
   }
   &__btn {
     //text-align: center;

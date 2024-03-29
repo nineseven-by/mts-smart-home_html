@@ -9,7 +9,7 @@
     margin: 0;
   }
   font-family: MTSSans, sans-serif;
-  padding: rem(100) 0 rem(70);
+  padding: rem(60) 0;
   background: #303138;
   color: #FFFFFF;
   ul {
@@ -26,8 +26,15 @@
     input[type="email"], input[type="text"] {
       margin-bottom: rem(12);
     }
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(md) {
       width: rem(774);
+    }
+    &__form {
+      @include media-breakpoint-up(md) {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+      }
     }
     .input {
       &--checkbox {
@@ -45,9 +52,33 @@
     }
     &__inner {
       margin-bottom: rem(12);
+      @include media-breakpoint-up(md) {
+        margin-bottom: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: rem(-8);
+        margin-right: rem(-8);
+        input[type="email"], input[type="text"] {
+          width: 100%;
+          margin-left: rem(8);
+          margin-right: rem(8);
+          margin-bottom: rem(16);
+        }
+        .input--checkbox {
+          margin-bottom: 0;
+          margin-left: rem(8);
+          margin-right: rem(8);
+        }
+      }
     }
     &__submit {
       width: 100%;
+      @include media-breakpoint-up(md) {
+        width: rem(180);
+        margin-left: rem(12);
+        flex-shrink: 0;
+      }
     }
     &__title {
       color: inherit;
@@ -56,6 +87,9 @@
       font-weight: 700;
       margin-bottom: rem(12);
       text-align: center;
+      @include media-breakpoint-up(md) {
+        text-align: left;
+      }
       @include media-breakpoint-up(xl) {
         font-size: rem(20);
         line-height: math.div(24 , 20);
@@ -115,23 +149,8 @@
     }
   }
   &__middle {
-    display: flex;
-    align-items: center;
-    //margin-top: rem(50);
-    @media (max-width: em(1360)){
-      //margin-top: rem(40);
-      //margin-top: rem(16);
-      align-items: flex-start;
-    }
-    @media (max-width: em(1199)){
-      //margin-top: rem(37);
-    }
-    //@media (max-width: em(991)){
-    //  margin-top: rem(40);
-    //  align-items: flex-start;
-    //}
-    @media (max-width: em(767)){
-      //margin-top: rem(18);
+    @include media-breakpoint-up(xl) {
+      justify-content: space-between;
     }
   }
   &__social {
@@ -142,10 +161,7 @@
   &__bottom {
     display: flex;
     align-items: center;
-    margin-top: rem(50);
-    @media (max-width: em(1399)){
-      margin-top: rem(40);
-    }
+    margin-top: rem(32);
   }
 
   &__text {

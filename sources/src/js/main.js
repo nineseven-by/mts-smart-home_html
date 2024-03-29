@@ -1,23 +1,24 @@
 import Swiper from "swiper";
 import {
-  HashNavigation,
-  Mousewheel,
   Navigation,
   Manipulation,
   Pagination,
-  Autoplay,
-  A11y,
-  Parallax,
-  EffectFade,
   Controller
 } from "swiper/modules";
 import { Tabs } from "./_tabs.js";
+import IMask from 'imask';
 import gsap from "gsap";
+
+import ScrollTrigger from "../libs/gsap/ScrollTrigger.js"
+
+gsap.registerPlugin(ScrollTrigger); 
 
 let vh;
 let widthScrollBar;
 let mainPopups;
 let isBodyFixed = false;
+let overlayGood;
+let header;
 const debounce = (callback, wait) => {
   let timeoutId = null;
   return (...args) => {
@@ -64,6 +65,7 @@ const bodyFixPosition = () => {
       // Коррекция скролла
       if (widthScrollBar > 0)
         document.body.style.paddingRight = `${widthScrollBar}px`;
+        document.querySelector("header").style.paddingRight = `${widthScrollBar}px`;
       const miaSupport = document.querySelector(".webim-button-corner");
       if (miaSupport) {
         miaSupport.classList.add("soft-hidden");
@@ -79,6 +81,7 @@ const bodyUnfixPosition = () => {
     document.documentElement.classList.remove("fixed");
     document.body.style.top = "";
     document.body.style.paddingRight = "";
+    document.querySelector("header").style.paddingRight = "";
     window.scroll(0, scrollPos);
     isBodyFixed = false;
     const miaSupport = document.querySelector(".webim-button-corner");
@@ -102,6 +105,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Your code here
   checkWidthScrollBar();
   checkVH();
+  const checkBodyFix = () => {
+    if ((!!mainPopups && mainPopups.isOpen)) {
+      bodyFix(true);
+    } else {
+      bodyFix(false);
+    }
+  };
+  if (document.querySelector(".overlay-good")) {
+    overlayGood = document.querySelector(".overlay-good");
+  }
+  if (document.querySelector("header")) {
+    header = document.querySelector("header");
+  }
   const sliderContainers = Array.from(document.querySelectorAll("[data-slider-container]"));
   sliderContainers.forEach((container) => {
     const swiperElement = container.querySelector(".swiper");
@@ -143,6 +159,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
   });
 
+  const burger = document.querySelector(".header__burger");
+  if (burger) {
+    burger.addEventListener("click", () => {
+      document.querySelector("header").classList.toggle("opened");
+    })
+  }
+
 
   if (document.querySelector(".smart")) {
     const smartSection = document.querySelector(".smart");
@@ -164,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const popupImgElem = popup.querySelector("[data-good-preview]");
     const popupIdElem = popup.querySelector("[data-good-name-input]");
     const items = Array.from(document.querySelectorAll("[data-good-id]"));
-    console.log(items)
+    //console.log(items)
     items.forEach((item) => {
       const itemNameElem = item.querySelector(".smartpopular-item__title");
       const itemImgElem = item.querySelector(".smartpopular-item__image img");
@@ -192,6 +215,111 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     funcOnResize();
   });
+
+  if (document.querySelector('a[href^="#"]:not([href="#"])')) {
+    const links = Array.from(document.querySelectorAll('a[href^="#"]:not([href="#"])'));
+    links.forEach((link) => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        let offsetLink = 100;
+        //if (link.hasAttribute('data-offset-link')) {
+        //  offsetLink = link.getAttribute('data-offset-link');
+        //}
+        scrollToElement(target, offsetLink, 500, function() {
+          header.classList.remove("opened");
+        });
+
+      });
+    })
+  }
+
+
+  // Input Masks
+  if (document.querySelector("[data-mask]")) {
+    const maskInputs = Array.from(document.querySelectorAll("[data-mask]"));
+    const phoneOptions = {
+      mask: "+{375} (00) 000-00-00",
+      lazy: false,
+    };
+    const phoneNoPrefixOptions = {
+      mask: "(00) 000-00-00",
+      lazy: false,
+    };
+    maskInputs.forEach((input) => {
+      if (input.dataset.mask === "phone") {
+        const maskPhone = IMask(input, phoneOptions);
+        input.addEventListener("click", (e) => {
+          setTimeout(() => {
+            maskPhone.alignCursor();
+          }, 0);
+        });
+      }
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") e.preventDefault();
+        if (e.key === "ArrowLeft") e.preventDefault();
+        if (e.key === "ArrowUp") e.preventDefault();
+        if (e.key === "ArrowDown") e.preventDefault();
+      });
+    });
+  }
+  // Animations
+  let keyReady = true;
+  const keyCheck = ['h1', ".key__description", ".key__footer"];
+  keyCheck.forEach((sel) => {
+    if (!document.querySelector(sel)) keyReady = false;
+  })
+  if (keyReady) {
+    const tl = gsap.timeline();
+    tl.fromTo("h1", {
+      y: 40,
+      opacity: 0,
+      duration: .6
+    }, {
+      y: 0,
+      opacity: 1,
+      duration: .6
+    });
+    tl.fromTo(".key__description", {
+      y: 40,
+      opacity: 0,
+      duration: .4
+    }, {
+      y: 0,
+      opacity: 1,
+      duration: .4
+    }, ">");
+    tl.fromTo(".key__footer", {
+      y: -20,
+      opacity: 0,
+      duration: .3
+    }, {
+      y: 0,
+      opacity: 1,
+      duration: .3
+    }, ">");
+  }
+  if (!keyReady) {
+    keyCheck.forEach((sel) => {
+      if (document.querySelector(sel)) {
+        document.querySelector(sel).classList.add("not-anim");
+      }
+    });
+  }
+  if (document.querySelector(".smarthome-cards__item")) {
+    const cards = Array.from(document.querySelectorAll(".smarthome-cards__item"));
+    cards.forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 60,
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+        }
+      });
+    });
+  }
 });
 
 
@@ -199,7 +327,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 class SmartHome {
   constructor(section, bodyFixFunction) {
     this.bodyFix = bodyFixFunction;
-    this.viewMode = "list";
+    this.viewMode = "image";
     this.locationNames = [];
     this.location = this.locationNames[0];
     this.btnsViewMode = Array.from(section.querySelectorAll(".smart-view__display .tabs-icon__btn"));
@@ -218,10 +346,6 @@ class SmartHome {
     this.smartCategories = section.querySelector(".smart-categories");
 
     this.updateRangePreview();
-    //console.log(this.elemPreview.offsetWidth - t *)
-    //this.elemPreview.offsetWidth - полная ширина
-    //this.elemPreview.offsetWidth * 0.01 * this.dynamicVisiblePreviewWidth / 2 - сколько в пикселях отжираем слева
-
     this.isOpened = false;
     this.isOpenedPopup = false;
 
@@ -237,7 +361,6 @@ class SmartHome {
     const widthImageWrapper = this.imageWrapper.offsetWidth;
     const widthImage = this.image.offsetWidth;
     this.dynamicVisiblePreviewWidth = widthPreview * 0.01 * Math.round(widthImageWrapper / (widthImage * 0.01));
-    //this.imageRangeOverflow.style.width = `${this.dynamicVisiblePreviewWidth}%`;
     this.imageRangeHandle.style.width = `${this.dynamicVisiblePreviewWidth}px`;
     const t = this.dynamicVisiblePreviewWidth / 2;
     this.imageRangeOverflow.style.left = `${t}px`;
@@ -247,6 +370,8 @@ class SmartHome {
 
   openPopup() {
     this.view.classList.add("opened");
+    document.querySelector("header").classList.remove("opened");
+    document.querySelector("header").classList.add("hide");
     if (window.innerWidth < 1200) {
       this.bodyFix(true);
     }
@@ -260,6 +385,7 @@ class SmartHome {
       this.bodyFix(false);
     }
     this.view.classList.remove("opened");
+    document.querySelector("header").classList.remove("hide");
   }
 
   toggleViewMode(e) {
@@ -267,11 +393,14 @@ class SmartHome {
     if (!target.hasAttribute("data-viewmode")) return;
     this.viewer.classList.remove(`smart-viewer--${this.viewMode}`);
     this.viewer.classList.remove(`smart-viewer--good`);
+    if (overlayGood) {
+      overlayGood.classList.remove("opened");
+      header.classList.remove("hide-good");
+      bodyFix(false);
+    }
     this.viewMode = target.dataset.viewmode;
     this.changeActiveBtnViewMode();
     this.viewer.classList.add(`smart-viewer--${this.viewMode}`);
-
-    //this.scrollImageWrapper.scrollLeft = this.scrollImageWrapper.scrollWidth * .5;
   }
   changeActiveBtnViewMode() {
     this.btnsViewMode.forEach((btn) => {
@@ -286,6 +415,11 @@ class SmartHome {
     const targetDots = document.querySelector("#target-dots");
     const targetGroups = document.querySelector(".smart-categories__list");
     this.viewer.classList.remove(`smart-viewer--good`);
+    if (overlayGood) {
+      overlayGood.classList.remove("opened");
+      header.classList.remove("hide-good");
+      bodyFix(false);
+    }
     targetDots.innerHTML = "";
     targetGroups.innerHTML = "";
     document.dispatchEvent(new CustomEvent("changeLocation", {
@@ -294,25 +428,11 @@ class SmartHome {
       }
     }));
   }
-
-  updateDynamicVars() {
-
-  }
-  updateDynamicDOM() {
-
-  }
-  sliderSlideChange() {
-    //if ()
-  }
   addEvents() {
-    //this.smartCategories.addEventListener("scroll", (e) => {
-    //  console.log(e);
-    //});
     document.addEventListener("loadSmartData", (e) => {
       const data = typeof e.detail.data === "string" ? JSON.parse(e.detail.data) : e.detail.data;
       this.locations = new SmartLocations(data.locations, data.groups, data.goods);
       this.groups = data.groups.map((group) => {
-        //console.log(group)
         const goodsInGroup = data.goods.filter((good) => good.group === group.id).map((good) => new SmartGood(good));
         new SmartGroup(group, goodsInGroup, this.goodPopup)
       });
@@ -329,20 +449,16 @@ class SmartHome {
       btn.addEventListener("click", this.toggleViewMode.bind(this));
     });
     this.previewControl.addEventListener("input", (e) => {
-      //console.log(e.target.value)
       const t = this.scrollImageWrapper;
       this.scrollImageWrapper.scrollLeft = (t.scrollWidth - window.innerWidth) * 0.01 * e.target.value;
     });
     this.scrollImageWrapper.addEventListener("scroll", (e) => {
-      //console.log(e.target.scrollWidth);
-      //console.log(e.target.scrollLeft)
       const maxWidth = e.target.scrollWidth - window.innerWidth;
       const scrollLeft = e.target.scrollLeft;
       const offset = Math.round(scrollLeft / (maxWidth * 0.01));
       this.previewControl.value = offset;
       this.imageRangeHandle.style.left = `${offset}%`;
     });
-    window.addEventListener("resize", this.updateDynamicVars.bind(this));
   }
 }
 
@@ -360,11 +476,9 @@ class SmartPopupGood {
     const sliderDescriptionEl = wrapper.querySelector(".smart-popup__description .swiper");
     const nextBtn = wrapper.querySelector(".smart-popup .swiper-control__right");
     const prevBtn = wrapper.querySelector(".smart-popup .swiper-control__left");
-    //const nextBtnDesc = wrapper.querySelector(".smart-popup__description .swiper-control__right");
-    //const prevBtnDesc = wrapper.querySelector(".smart-popup__description .swiper-control__left");
     this.sliders = {
       combination: new Swiper(sliderCombinationEl, {
-        modules: [Navigation, Controller, Manipulation],
+        modules: [Navigation, Controller, Manipulation, Pagination],
         navigation: {
           nextEl: nextBtn,
           prevEl: prevBtn,
@@ -380,7 +494,7 @@ class SmartPopupGood {
         },
       }),
       description: new Swiper(sliderDescriptionEl, {
-        modules: [Controller, Manipulation]
+        modules: [Controller, Manipulation, Pagination]
       })
     };
     this.sliders.combination.controller.control = this.sliders.description;
@@ -397,6 +511,11 @@ class SmartPopupGood {
     });
     this.closeBtn.addEventListener("click", (e) => {
       this.elTrigger.classList.remove("smart-viewer--good");
+      if (overlayGood) {
+        overlayGood.classList.remove("opened");
+        header.classList.remove("hide-good");
+        bodyFix(false);
+      }
     });
 
 
@@ -467,7 +586,6 @@ class SmartPopupGood {
       if (good.related && good.related.length > 0) {
         good.related.forEach((goodId) => {
           const relGood = this.goods.find((rel) => rel.id === goodId);
-          //console.log(relGood)
           if (relGood) {
             relatedSmallItems += getCard(relGood, true);
           }
@@ -492,7 +610,6 @@ class SmartPopupGood {
 
 class SmartLocations {
   constructor(locations, groups, goods) {
-    //console.log("SMART LOCATIONS")
     this.activeLocation = null;
     this.image = document.querySelector(".smart-viewer__img img");
     this.imagePreview = document.querySelector(".smart-viewer__preview img");
@@ -504,7 +621,6 @@ class SmartLocations {
     this.locations = locations.map((location) => {
       const elem = this.template.content.cloneNode(true);
       const btn = elem.querySelector("button");
-      const img = elem.querySelector("img");
       const title = elem.querySelector(".smart-location__title");
       const elemValue = elem.querySelector(".smart-location__value");
       btn.dataset.locationId = location.id;
@@ -521,44 +637,15 @@ class SmartLocations {
       });
 
       this.setRuCountGroups(elemValue, countGroups);
-
-      img.setAttribute("src", img.getAttribute("src") + location.id + ".webp");
-      img.setAttribute("alt", img.getAttribute("alt") + location.nameRu);
       title.textContent = location.nameRu;
       this.targetLocations.appendChild(elem);
       return { id: location.id, elem, btn, nameRu: location.nameRu, image: location.image };
     });
-    //const exGroup = new SmartGroup({
-    //  id: "led-lamp",
-    //  nameRu: "Лампа светодиодная",
-    //  image: "./images/pages/smart/groups/led-lamp.webp",
-    //  imageSmall: "./images/pages/smart/groups/led-lamp-small.webp",
-    //  locations: [
-    //    {
-    //      id: "kitchen",
-    //      x: 300,
-    //      y: 150,
-    //      order: 2,
-    //    },
-    //    {
-    //      id: "bedroom",
-    //      x: 512,
-    //      y: 256,
-    //      order: 0,
-    //    }
-    //  ]
-    //});
-    //exGroup.createHtml("kitchen")
     this.addEvents();
   }
   setRuCountGroups(elem, value) {
-    //let endWord = "товар";
-    //const lastDigit = value % 10;
-    //endWord = getNoun(value, endWord, `${endWord}а`, `${endWord}ов`)
-    //elem.innerText = `${value} ${endWord}`;
     elem.innerText = ` (${value})`;
   }
-  //updateValues()
   changeLocation(id) {
     if (this.activeLocation) {
       this.activeLocation.btn.classList.remove("active");
@@ -571,9 +658,6 @@ class SmartLocations {
     this.image.setAttribute("src", this.activeLocation.image);
     this.imagePreview.setAttribute("alt", this.activeLocation.nameRu);
     this.imagePreview.setAttribute("src", this.activeLocation.image);
-    //console.log(this.image)
-    //console.log(this.activeLocation)
-    //console.log(this.image.getAttribute("src"))
     document.dispatchEvent(new CustomEvent("beforeChangeLocation", {
       detail: {
         newLocation: activeId
@@ -583,7 +667,6 @@ class SmartLocations {
   addEvents() {
     this.locations.forEach((location) => {
       location.btn.addEventListener("click", (e) => {
-        //console.log(location.id);
         this.changeLocation(location.id);
       });
     });
@@ -597,7 +680,6 @@ class SmartGroup {
     // Элемент списка
     this.templateGroup = document.querySelector("#template-group");
     this.targetGroups = document.querySelector("#target-groups");
-    //console.log(this.targetGroups)
     // Элемент триггер попапа
     this.elemTriggerPopup = document.querySelector(".smart-viewer");
     // Данные
@@ -653,11 +735,22 @@ class SmartGroup {
       // Update popup
       this.goodPopup.updatePopup(this);
       this.elemTriggerPopup.classList.add("smart-viewer--good");
+      // OVERLAY MAIN
+      if (overlayGood && window.innerWidth >= 1200) {
+        overlayGood.classList.add("opened");
+        header.classList.add("hide-good");
+        bodyFix(true);
+      }
     });
     groupBtn.addEventListener("click", () => {
       // Update popup
       this.goodPopup.updatePopup(this);
       this.elemTriggerPopup.classList.add("smart-viewer--good");
+      if (overlayGood && window.innerWidth >= 1200) {
+        overlayGood.classList.add("opened");
+        header.classList.add("hide-good");
+        bodyFix(true);
+      }
     });
   }
   addEvents() {
@@ -725,7 +818,6 @@ class SmartPagination {
 }
 class SmartGood {
   constructor(data) {
-    //console.log(data)
     this.id = data.id;
     this.nameRu = data.nameRu;
     this.link = data.link;
@@ -826,9 +918,6 @@ class Popups {
         this.openIdPopup(e.target.closest("[data-popup]").dataset.popup);
       }
     });
-    //window.addEventListener('resize', () => {
-    //  if (this.isOpen) this.close();
-    //});
   }
 }
 class Popup {
@@ -866,7 +955,6 @@ class Popup {
       this.popup.classList.add('popup_overflow');
     }
     this.popup.classList.add('popup-open');
-    //if (this.popup)
   }
 
   close() {
@@ -876,11 +964,6 @@ class Popup {
   }
 
   events() {
-    //this.buttons.forEach((button) => {
-    //  button.addEventListener('click', () => {
-    //    this.parent.openPopup(this);
-    //  });
-    //});
     if (this.backBtn) {
       this.backBtn.addEventListener("click", () => {
         this.parent.backPopup(this);
@@ -891,14 +974,7 @@ class Popup {
     });
     this.parent.wrapper.addEventListener("click", (e) => {
       if (e.target.closest("[data-close]")) this.parent.closePopup();
-    })
-    //if (this.addCloseBtns.length > 0) {
-    //  this.addCloseBtns.forEach((btn) => {
-    //    btn.addEventListener('click', () => {
-    //      this.parent.closePopup();
-    //    });
-    //  })
-    //}
+    });
   }
 }
 function openPopup(id) {
@@ -922,5 +998,32 @@ function checkVH() {
   vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vh", `${vh}px`);
 }
-// Your functions here
+function scrollToElement(target, offset, duration, callback) {
+  const targetPos =
+    target.getBoundingClientRect().top + window.scrollY - offset;
+  const startPos = window.scrollY;
+  const distance = targetPos - startPos;
+
+  let startTime = null;
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const run = ease(timeElapsed, startPos, distance, duration);
+    window.scrollTo(0, run);
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    } else {
+      callback();
+    }
+  }
+
+  function ease(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return (c / 2) * t * t + b;
+    t--;
+    return (-c / 2) * (t * (t - 2) - 1) + b;
+  }
+
+  requestAnimationFrame(animation);
+}
 
