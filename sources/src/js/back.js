@@ -6,7 +6,7 @@ $(function() {
         e.preventDefault();
 
         $.ajax({
-            "url": "/request-mailing",
+            "url": "/api/request-mailing",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -28,7 +28,7 @@ $(function() {
         const commentText = $('#comment').val().trim();
 
         $.ajax({
-            "url": "/request-consultation",
+            "url": "/api/request-consultation",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -48,7 +48,7 @@ $(function() {
         const commentText = $('#popup-comment').val().trim();
 
         $.ajax({
-            "url": "/request-order",
+            "url": "/api/request-order",
             "method": "POST",
             "headers": {
                 "Content-Type": "application/x-www-form-urlencoded"
