@@ -532,7 +532,8 @@ class SmartPopupGood {
 
     const getCard = (good, isMin) => {
       const newTemplateNode = templateSmartCard.content.cloneNode(true);
-      const link = newTemplateNode.querySelector(".smart-card");
+      const card = newTemplateNode.querySelector(".smart-card");
+      const link = newTemplateNode.querySelector(".smart-card__link");
       const img = newTemplateNode.querySelector(".smart-card__image img");
       const title = newTemplateNode.querySelector(".smart-card__title");
 
@@ -541,10 +542,16 @@ class SmartPopupGood {
       img.setAttribute("alt", good.nameRu);
       img.setAttribute("src", good.imageSmall || good.image);
       title.innerText = good.nameRu;
-      if (isMin) {
-        link.classList.remove("smart-card--big");
+      if (newTemplateNode.querySelector(".share__link")) {
+        const links = Array.from(newTemplateNode.querySelectorAll(".share__link"));
+        links.forEach((el) => {
+          el.setAttribute("href", createShareItemLink(el.dataset.social, `${good.link}`, "Посмотри,+что+я+нашел+для+умного+дома:+" + good.nameRu + "+в+МТС", "Посмотри,+что+я+нашел+для+умного+дома:+" + good.nameRu + "+в+МТС"))
+        })
       }
-      return link.outerHTML;
+      if (isMin) {
+        card.classList.remove("smart-card--big");
+      }
+      return card.outerHTML;
     }
 
     const goods = this.goods.filter((good) => good.group === group.id);
@@ -1027,3 +1034,30 @@ function scrollToElement(target, offset, duration, callback) {
   requestAnimationFrame(animation);
 }
 
+
+function createShareItemLink(social, domen, text, title, descr, image) {
+  let link = "https://";
+  switch (social) {
+    case "vk":
+      link += "vk.com/share.php?url=";
+      break;
+      case "ok":
+      link += "connect.ok.ru/offer?url=";      
+      break;
+      case "tg":
+      link += "telegram.me/share/url?url=";
+      break;
+    default:
+      break;
+  }
+  link += domen ?? "https://smart-home.mts.n3.by/";
+  link += "&title=";
+  link += title ?? "Сделайте+свой+дом+умным+-+вместе+с+МТС";
+  link += "&text=";
+  link += text ?? "Сделайте+свой+дом+умным+-+вместе+с+МТС";
+  //link += "&description=";
+  //link += descr ?? "Наш+магазин+предлагает+вам+самые+передовые+технологии+для+создания+умного+дома,+вы+сможете+контролировать+каждый+аспект+своего+дома,+где+бы+вы+ни+находились,+с+помощью+вашего+смартфона";
+  //link += "&imageurl=";
+  //link += image ?? "https://www.mts.by/upload/resize_cache/webp/dev2fun_opengraph/94e/94e8235d21a737c0066943bca4469420.webp";
+  return link;
+}

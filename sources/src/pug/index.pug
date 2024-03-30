@@ -122,13 +122,27 @@ block page
           a.smart-card-app__link(href="https://redirect.appmetrica.yandex.com/serve/676179246397299963", target="_blank")
             img(src="./images/pages/smart/apps/get-app-store.svg", alt="Скачать из AppStore")
     template#template-smart-card 
-      a.smart-card.smart-card--big(href="#")
+      .smart-card.smart-card--big
+        a.smart-card__link(href="#")
         .smart-card__image 
           img(src="#", alt="#")
         .smart-card__info
           p.smart-card__title name
           .smart-card__arrow
             img(src="./images/icons/smart-arrow-angle.svg", alt="Перейти")
+        .share 
+          .share__wrapper
+            p.share__text Поделиться
+            ul.share__list
+              li.share__item 
+                a.share__link(target="_blank", href="#", data-social="vk" title="Поделиться товаром в VK", aria-label="Поделиться товаром в VK")
+                  +use('vk-logo', 40, 40)
+              li.share__item 
+                a.share__link(target="_blank", href="#", data-social="ok", title="Поделиться товаром в Одноклассниках", aria-label="Поделиться товаром в Одноклассниках")
+                  +use('ok-logo', 40, 40)
+              li.share__item 
+                a.share__link(target="_blank", href="#", data-social="tg", title="Поделиться товаром в Telegram", aria-label="Поделиться товаром в Telegram")
+                  +use('telegram-logo', 40, 40)
     .container-fluid 
       .smart-wrapper 
         h2.section-default__title.center.h1.anim.anim__create Примеры использования
@@ -458,7 +472,7 @@ block page
                         +use('swiper-arrow', 28, 28)
                       button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
                         +use('swiper-arrow', 28, 28)
-                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/pylesosy-vertikalnye/") Посмотреть все продукты
+                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/pylesosy-vertikalnye/") Посмотреть и сравнить все продукты
               .tabs__container
                 .smartpopular-more 
                   .smartpopular-more__description
@@ -509,7 +523,7 @@ block page
                         +use('swiper-arrow', 28, 28)
                       button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
                         +use('swiper-arrow', 28, 28)
-                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/ip-kamery/") Посмотреть все продукты
+                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/ip-kamery/") Посмотреть и сравнить все продукты
               .tabs__container
                 .smartpopular-more 
                   .smartpopular-more__description
@@ -575,7 +589,7 @@ block page
                         +use('swiper-arrow', 28, 28)
                       button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
                         +use('swiper-arrow', 28, 28)
-                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/elektrochayniki/") Посмотреть все продукты
+                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/elektrochayniki/") Посмотреть и сравнить все продукты
               .tabs__container
                 .smartpopular-more 
                   .smartpopular-more__description
@@ -641,7 +655,7 @@ block page
                         +use('swiper-arrow', 28, 28)
                       button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
                         +use('swiper-arrow', 28, 28)
-                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/speakers/") Посмотреть все продукты
+                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/speakers/") Посмотреть и сравнить все продукты
               .tabs__container
                 .smartpopular-more 
                   .smartpopular-more__description
@@ -692,7 +706,7 @@ block page
                         +use('swiper-arrow', 28, 28)
                       button.swiper-button.swiper-button-next(aria-label="Следующий слайд")
                         +use('swiper-arrow', 28, 28)
-                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/lampy-i-svetodiodnye-lenty/") Посмотреть все продукты
+                  a.smartpopular-more__all.btn.btn_gray(target="_blank", href="https://shop.mts.by/smart-house/lampy-i-svetodiodnye-lenty/") Посмотреть и сравнить все продукты
   .space.space--default
   section#smarthome-reviews.section 
     .container-fluid 

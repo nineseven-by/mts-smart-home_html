@@ -35,13 +35,13 @@
 
 .svg-image-arrow {
 	@extend %svg-common;
-	background-position: 91.57894736842105% 50%;
+	background-position: 91.57894736842105% 79.16666666666667%;
 	background-size: math.div(216, 26)*100% auto;
 	width: 26px;
 
 }
 @mixin svg-pos-image-arrow {
-	background-position: 91.57894736842105% 50%;
+	background-position: 91.57894736842105% 79.16666666666667%;
 }
 @mixin svg-image-arrow-hover {
 	.svg-image-arrow {
@@ -265,15 +265,44 @@
 	height: 42px;
 }
 
+.svg-image-share {
+	@extend %svg-common;
+	background-position: 24.137931034482758% 100%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-share {
+	background-position: 24.137931034482758% 100%;
+}
+@mixin svg-image-share-hover {
+	.svg-image-share {
+		@include svg-pos-image-share-hover
+	}
+}
+
+.svg-image-share:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-share-dims {
+	width: 42px;
+	height: 42px;
+}
+
 .svg-image-swiper-arrow {
 	@extend %svg-common;
-	background-position: 93.54838709677419% 30%;
+	background-position: 93.54838709677419% 60%;
 	background-size: math.div(216, 30)*100% auto;
 	width: 30px;
 
 }
 @mixin svg-pos-image-swiper-arrow {
-	background-position: 93.54838709677419% 30%;
+	background-position: 93.54838709677419% 60%;
 }
 @mixin svg-image-swiper-arrow-hover {
 	.svg-image-swiper-arrow {
@@ -296,13 +325,13 @@
 
 .svg-image-telegram-logo {
 	@extend %svg-common;
-	background-position: 24.137931034482758% 100%;
+	background-position: 48.275862068965516% 100%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-telegram-logo {
-	background-position: 24.137931034482758% 100%;
+	background-position: 48.275862068965516% 100%;
 }
 @mixin svg-image-telegram-logo-hover {
 	.svg-image-telegram-logo {
@@ -325,13 +354,13 @@
 
 .svg-image-tiktok-logo {
 	@extend %svg-common;
-	background-position: 48.275862068965516% 100%;
+	background-position: 72.41379310344827% 100%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-tiktok-logo {
-	background-position: 48.275862068965516% 100%;
+	background-position: 72.41379310344827% 100%;
 }
 @mixin svg-image-tiktok-logo-hover {
 	.svg-image-tiktok-logo {
@@ -354,13 +383,13 @@
 
 .svg-image-twitter-logo {
 	@extend %svg-common;
-	background-position: 72.41379310344827% 100%;
+	background-position: 100% 0;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-twitter-logo {
-	background-position: 72.41379310344827% 100%;
+	background-position: 100% 0;
 }
 @mixin svg-image-twitter-logo-hover {
 	.svg-image-twitter-logo {
@@ -383,13 +412,13 @@
 
 .svg-image-vk-logo {
 	@extend %svg-common;
-	background-position: 100% 0;
+	background-position: 100% 32.8125%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-vk-logo {
-	background-position: 100% 0;
+	background-position: 100% 32.8125%;
 }
 @mixin svg-image-vk-logo-hover {
 	.svg-image-vk-logo {
