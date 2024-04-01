@@ -61,6 +61,28 @@ $(function() {
             }
         })
 
-        $('.popup__body').html('<span>Заявка успешно отправлена!</span>');
+        $('#popup-item .popup__body').html('<span>Заявка успешно отправлена!</span>');
+    })
+
+    $('#smarthome-idea-popup-form').on('submit', (e) => {
+        e.preventDefault();
+        const commentText = $('#popup-fb-message').val().trim();
+
+        $.ajax({
+            "url": "/api/request-suggestion",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "data": {
+                "email": $('#popup-fb-mail').val(),
+                "phone": $('#popup-fb-phone').val(),
+                "message": commentText === '' ? null : commentText,
+                "theme": $('#popup-fb-theme').val(),
+                "fio": $('#popup-fb-name').val(),
+            }
+        })
+
+        $('#popup-feedback .popup__body').html('<span>Ваша идея успешно отправлена!</span>');
     })
 })
