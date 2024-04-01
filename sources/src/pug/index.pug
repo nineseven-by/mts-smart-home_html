@@ -894,9 +894,10 @@ block page
             .wrap-input
               input#client(type="text")
             //-
-            label(for="phone") Номер телефона
+            label(for="phone") Номер телефона 
+              span.color-red  *
             .wrap-input
-              input#phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone")
+              input#phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone", required)
             //-
             label(for="comment") Комментарий
             .wrap-input
@@ -925,12 +926,51 @@ block page
               input#popup-client(type="text")
             //-
             label(for="popup-phone") Номер телефона
+              span.color-red  *
             .wrap-input
-              input#popup-phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone")
+              input#popup-phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone", required)
             //-
             label(for="popup-comment") Комментарий
             .wrap-input
               textarea#popup-comment
+            button.btn.btn_red(type="submit") Отправить
+    .popup#popup-feedback
+      .popup__wrapper 
+        .popup__header 
+          //-.popup__preview 
+            img(src="./images/pages/smarthome/popular/cams/xiaomi-c300.webp", alt="Товар Xiaomi Smart Camera C300", data-good-preview)
+          h2.popup__title Предложить идею 
+          button.popup__close(title="Закрыть")
+        .popup__body
+          form.smarthome-order__form(action="#", method="post", id="smarthome-feedback-popup-form") 
+            //-
+            label(for="popup-fb-name") ФИО
+            .wrap-input
+              input#popup-fb-name(type="text", placeholder="Например, Иванов Иван Иванович")
+            //-
+            label(for="popup-fb-theme") Тема
+            .select 
+              select#popup-fb-theme(name="popup-fb-theme") 
+                option(value="Продажи") Отдел продаж
+                option(value="Разработка") Отдел разработки
+                option(value="Маркетинг") Отдел маркетинга
+            //-.wrap-input
+            .row 
+              .col-12.col-md-6
+                label(for="popup-fb-mail") Электронный адрес
+                .wrap-input
+                  input#popup-fb-mail(type="email", placeholder="example@mail.ru")
+              .col-12.col-md-6
+                label(for="popup-fb-phone") Номер телефона
+                  span.color-red  *
+                .wrap-input
+                  input#popup-fb-phone(type="text", placeholder="+375 (XX) XXX-XX-XX", data-mask="phone", required)
+            //-
+            //-
+            //-
+            label(for="popup-fb-message") Сообщение
+            .wrap-input
+              textarea#popup-fb-message
             button.btn.btn_red(type="submit") Отправить
   // Товары для функционала умного дома
   script   

@@ -235,35 +235,65 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
   }
 
-
+  // Selects
+  const selects = Array.from(document.querySelectorAll(".select"));
+  selects.forEach((select) => initSelect(select));
   // Input Masks
-  if (document.querySelector("[data-mask]")) {
-    const maskInputs = Array.from(document.querySelectorAll("[data-mask]"));
-    const phoneOptions = {
-      mask: "+{375} (00) 000-00-00",
-      lazy: false,
-    };
-    const phoneNoPrefixOptions = {
-      mask: "(00) 000-00-00",
-      lazy: false,
-    };
-    maskInputs.forEach((input) => {
-      if (input.dataset.mask === "phone") {
-        const maskPhone = IMask(input, phoneOptions);
-        input.addEventListener("click", (e) => {
-          setTimeout(() => {
-            maskPhone.alignCursor();
-          }, 0);
+  const forms = Array.from(document.querySelectorAll("form"));
+  forms.forEach((form) => {
+    if (form.querySelector("[data-mask]")) {
+      form.querySelector('button[type="submit"]').disabled = true;
+      const maskInputs = Array.from(form.querySelectorAll("[data-mask]"));
+      const phoneOptions = {
+        mask: "+{375} (code) 000-00-00",
+        lazy: false,
+        blocks: {
+          code: {
+            mask: IMask.MaskedEnum,
+            enum: ['25', '29', '33', '44']
+          }
+        }
+      };
+      maskInputs.forEach((input) => {
+        if (input.dataset.mask === "phone") {
+          const maskPhone = IMask(input, phoneOptions);
+          const errorMessageEl = document.createElement("p");
+          errorMessageEl.classList.add("form__error");
+          errorMessageEl.innerText = "Введите корректный номер с кодом оператора (25, 29, 33 или 44)"
+          input.after(errorMessageEl);
+          maskPhone.on("accept", () => {
+            const isValid = !input.value.includes('_') && input.value.length === 19;
+            if (isValid) {
+              form.querySelector('button[type="submit"]').removeAttribute("disabled");
+              input.classList.remove("invalid");
+            } else {
+              form.querySelector('button[type="submit"]').disabled = true;
+              input.classList.add("invalid");
+            }
+          });
+          input.addEventListener("click", (e) => {
+            setTimeout(() => {
+              maskPhone.alignCursor();
+            }, 0);
+          });
+          //input.addEventListener("change", (e) => {
+            
+          //  console.log(maskPhone)
+          //  console.log(input.value[18])
+          //  if (maskPhone.value.length < 19 && typeof +maskPhone.value[19] !== "number") {
+          //    console.log("NO")
+          //  }
+          //});
+        }
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") e.preventDefault();
+          if (e.key === "ArrowLeft") e.preventDefault();
+          if (e.key === "ArrowUp") e.preventDefault();
+          if (e.key === "ArrowDown") e.preventDefault();
         });
-      }
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") e.preventDefault();
-        if (e.key === "ArrowLeft") e.preventDefault();
-        if (e.key === "ArrowUp") e.preventDefault();
-        if (e.key === "ArrowDown") e.preventDefault();
       });
-    });
-  }
+    }
+  })
   // Animations
   let keyReady = true;
   const keyCheck = ['h1', ".key__description", ".key__footer"];
@@ -1060,4 +1090,411 @@ function createShareItemLink(social, domen, text, title, descr, image) {
   //link += "&imageurl=";
   //link += image ?? "https://www.mts.by/upload/resize_cache/webp/dev2fun_opengraph/94e/94e8235d21a737c0066943bca4469420.webp";
   return link;
+}
+
+function initSelect(select) {
+  const original = Object.getOwnPropertyDescriptor(
+    HTMLSelectElement.prototype,
+    "value"
+  );
+  const originalSelectedOptions = Object.getOwnPropertyDescriptor(
+    HTMLSelectElement.prototype,
+    "selectedOptions"
+  );
+  const selectElem = select.tagName === "SELECT" ? select : select.querySelector("select");
+  if (!!selectElem) {
+    Object.defineProperty(selectElem, "value", {
+      get: original.get,
+      set(val) {
+        const old = this.value;
+        const res = original.set.call(this, val);
+        if (old != val) this.dispatchEvent(new Event("change"));
+        return res;
+      },
+    });
+    if (selectElem.hasAttribute("multiple")) {
+      Object.defineProperty(selectElem, "selectedOptions", {
+        get: originalSelectedOptions.get,
+        set: function (selectedArray) {
+          for (let i = 0; i < this.options.length; i++) {
+            this.options[i].selected = false;
+          }
+          for (let i = 0; i < selectedArray.length; i++) {
+            const option = selectedArray[i];
+            for (let j = 0; j < this.options.length; j++) {
+              if (this.options[j] === option) {
+                this.options[j].selected = true;
+                break;
+              }
+            }
+          }
+        },
+      });
+    }
+  }
+  new SelectDefault(select);
+}
+class SelectDefault {
+  constructor(elem) {
+    this.elem = elem.tagName === "SELECT" ? elem.parentElement : elem;
+    this.select = this.elem.querySelector('select');
+    this.isMultiple = !!this.select && this.select.hasAttribute("multiple");
+    this.values = [];
+    this.wrapper = null;
+    this.button = null;
+    this.nowOption = null;
+    this.list = null;
+    this.optionsElem = [];
+    this.activeOption = null;
+    this.options = [];
+    this.build();
+
+    this.tl = gsap.timeline();
+
+    this.isOpen = false;
+    this.init();
+    this.events();
+    this.handleClose = (e) => {
+      if (!e.composedPath().includes(this.elem)) {
+        this.close();
+      }
+    };
+  }
+
+  build() {
+    const elem = this.elem;
+    if (elem.querySelector('.select__wrapper')) {
+      this.wrapper = elem.querySelector('.select__wrapper');
+      this.button = elem.querySelector('.select__header');
+      this.nowOption = elem.querySelector('.select__now');
+      this.list = elem.querySelector('.select__list');
+    } else {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('select__wrapper');
+      const header = document.createElement('div');
+      header.classList.add('select__header');
+      const now = document.createElement('span');
+      now.classList.add('select__now');
+      const arrow = document.createElement('span');
+      arrow.classList.add('select__arrow');
+      const list = document.createElement('ul');
+      list.classList.add('select__list');
+      wrapper.append(header, list);
+      header.append(now, arrow);
+      this.elem.append(wrapper);
+      this.wrapper = wrapper;
+      this.button = header;
+      this.nowOption = now;
+      this.list = list;
+    }
+    if (this.select) {
+      this.optionsElem = Array.from(this.select.querySelectorAll("option"));
+      this.options = this.optionsElem.map((option, index) => {
+        return new SelectOption(this, this.list, option.innerText, this.optionsElem[index], this.select.value);
+      });
+    }
+    if (this.elem.classList.contains("select-search")) {
+      const searchLi = document.createElement("li");
+      searchLi.classList.add("select-search");
+      const searchInput = document.createElement("input");
+      searchInput.type = 'search';
+      searchInput.placeholder = 'Найти...';
+      searchLi.append(searchInput);
+      this.list.prepend(searchLi);
+      this.searchElem = searchInput;
+    }
+    if (this.isMultiple) {
+      this.elem.classList.add("select-multiple");
+    }
+  }
+
+  init() {
+    if (this.select && this.select.value) {
+      let findValue = false;
+      this.optionsElem.forEach((option) => {
+        if (option.value === this.select.value) {
+          this.nowOption.innerText = option.innerText;
+          findValue = true;
+        }
+      });
+      if (!findValue) this.nowOption.innerText = this.select.value;
+      return;
+    }
+    if (this.select && this.select.hasAttribute("placeholder")) {
+      this.nowOption.innerText = this.select.getAttribute("placeholder");
+      return;
+    }
+  }
+
+  open() {
+    if (!this.isOpen) {
+      this.wrapper.classList.add("opened");
+      this.list.scrollTo({
+        top: 0,
+      });
+      this.tl.to(this.list, {
+        autoAlpha: 1,
+        duration: 0,
+      });
+      this.tl.to(this.list, {
+        height: 'auto',
+        duration: 0.4,
+        onComplete: () => {
+          if (this.searchElem) this.searchElem.focus();
+        }
+      }, '>');
+      this.isOpen = true;
+      window.addEventListener("click", this.handleClose);
+    }
+  }
+  close() {
+    if (!!this.isOpen) {
+      this.wrapper.classList.remove("opened");
+      this.tl.to(this.list, {
+        height: 0,
+        duration: 0.4
+      });
+      this.tl.to(
+        this.list,
+        {
+          autoAlpha: 0,
+          duration: 0.2,
+          delay: 0.2,
+          onComplete: () => {
+            if (this.searchElem) {
+              this.searchElem.value = "";
+              this.search();
+            }
+          },
+        },
+        "<"
+      );
+      this.isOpen = false;
+      window.removeEventListener("click", this.handleClose);
+    }
+  }
+  toggle() {
+    if (!this.isOpen) {
+      this.open();
+    } else {
+      this.close();
+    }
+  }
+
+  getMultipleActiveOptions() {
+    return this.options.filter((opt) => opt.isActive);
+  }
+
+  updateMultipleText() {
+    const visibleText = this.getMultipleActiveOptions()
+      .map((opt) => opt.option)
+      .join("; ");
+    if (visibleText === '') {
+      this.nowOption.innerText = this.select.getAttribute("placeholder");
+    } else {
+      this.nowOption.innerText = visibleText;
+      this.nowOption.title = `Выбраны: ${visibleText}`;
+    }
+  }
+
+  updateMultipleValue() {
+    const activeOptions = this.getMultipleActiveOptions();
+    this.select.selectedOptions = activeOptions.map((opt) => opt.optionElem);
+  }
+
+  updateMultipleOption(option) {
+    if (option.isActive) {
+      option.unselected();
+      this.values = this.values.filter((val) => val !== option.value);
+      this.updateMultipleText();
+      this.updateMultipleValue();
+    } else {
+      option.selected();
+      this.values.push(option.value);
+      this.updateMultipleText();
+      this.updateMultipleValue();
+    }
+  }
+
+  updateOption(option) {
+    if (this.select) {
+      if (this.isMultiple) {
+        this.updateMultipleOption(option);
+        return;
+      }
+      if (this.activeOption) {
+        this.activeOption.unselected();
+        this.activeOption = option;
+        this.activeOption.selected();
+        this.close();
+      } else {
+        this.activeOption = option;
+        this.activeOption.selected();
+        this.close();
+      }
+      this.nowOption.innerText = option.option;
+      if (option.direction.length > 0) {
+        if (option.direction === "up") {
+          if (this.nowOption.classList.contains("down"))
+            this.nowOption.classList.remove("down");
+          if (!this.nowOption.classList.contains("up"))
+            this.nowOption.classList.add("up");
+        }
+        if (option.direction === "down") {
+          if (this.nowOption.classList.contains("up"))
+            this.nowOption.classList.remove("up");
+          if (!this.nowOption.classList.contains("down"))
+            this.nowOption.classList.add("down");
+        }
+      } else {
+        if (this.nowOption.classList.contains("up"))
+          this.nowOption.classList.remove("up");
+        if (this.nowOption.classList.contains("down"))
+          this.nowOption.classList.remove("down");
+      }
+      this.select.value = option.value;
+    }
+  }
+  handleBtnClick(e) {
+    e.preventDefault();
+    this.toggle();
+  }
+  handleChangeSelect() {
+    if (this.isMultiple) {
+      const selectedOptions = Array.from(this.select.selectedOptions);
+      this.options.forEach((option) => {
+        if (selectedOptions.includes(option.optionElem)) {
+          option.selected();
+        } else option.unselected();
+      });
+      this.updateMultipleText();
+    } else {
+      const newValue = this.select.value;
+      this.options.forEach((option) => {
+        if (option.value && option.value === newValue) {
+          if (this.activeOption) this.activeOption.unselected();
+          this.activeOption = option;
+          this.activeOption.selected();
+          this.nowOption.innerText = option.option;
+        }
+      });
+    }
+  }
+  search(event = "input") {
+    const value = this.searchElem.value.toLowerCase();
+    this.options.forEach((option) => option.show());
+    if (value.length) {
+      const notValidOptions = this.options.filter((option) => {
+        return !option.value.toLowerCase().includes(value) &&
+          !option.option.toLowerCase().includes(value) &&
+          option.isHidden !== true
+      });
+      notValidOptions.forEach((option) => option.hide());
+      if (event === "submit" && this.options.length - notValidOptions.length === 1) {
+        this.updateOption(this.options.find((option) => !option.isHidden));
+        this.close();
+      }
+    }
+  }
+  events() {
+    this.button.addEventListener('click', this.handleBtnClick.bind(this));
+    if (this.select) {
+      this.select.addEventListener("change", this.handleChangeSelect.bind(this));
+    }
+    if (this.searchElem) {
+      this.searchElem.addEventListener("input", this.search.bind(this))
+      this.searchElem.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          this.search.call(this, "submit");
+        }
+      })
+    }
+  }
+  destroy() {
+    this.button.removeEventListener('click', this.handleBtnClick.bind(this));
+    if (this.select) {
+      this.select.removeEventListener("change", this.handleChangeSelect.bind(this));
+    }
+  }
+}
+
+class SelectOption {
+  constructor(select, list, option, optionElem, activeOption) {
+    this.select = select;
+    this.list = list;
+    this.option = option;
+    this.value = optionElem.value ?? null;
+    this.isActive = false;
+    this.isHidden = false;
+
+    this.direction = '';
+
+    this.elem = document.createElement('li');
+    this.elem.classList.add('select__item');
+    this.list.append(this.elem);
+    const textElem = document.createElement('p');
+    textElem.classList.add('select__option');
+    if (optionElem.hasAttribute("data-title")) {
+      this.elem.style.display = 'none';
+    }
+    if (optionElem.classList.contains('up')) {
+      this.direction = 'up';
+      textElem.classList.add('up');
+    }
+    if (optionElem.classList.contains('down')) {
+      this.direction = 'down';
+      textElem.classList.add('down');
+    }
+    textElem.innerText = option;
+    this.elem.append(textElem);
+
+    this.openElement = null;
+    if (optionElem.dataset?.open) {
+      if (document.querySelector(`#${optionElem.dataset.open}`)) {
+        this.openElement = document.querySelector(`#${optionElem.dataset.open}`);
+      }
+    }
+    this.optionElem = optionElem;
+    if (activeOption && activeOption === option) {
+      this.elem.classList.add("active");
+      this.isActive = true;
+      this.select.activeOption = this;
+      if (this.openElement && !this.openElement.classList.contains('opened')) {
+        this.openElement.classList.add('opened');
+      }
+    }
+    this.events();
+  }
+  hide() {
+    this.isHidden = true;
+    this.elem.classList.add("hidden");
+  }
+  show() {
+    this.isHidden = false;
+    this.elem.classList.remove("hidden");
+  }
+
+  selected() {
+    this.elem.classList.add('active');
+    this.isActive = true;
+
+    if (this.openElement && !this.openElement.classList.contains('opened')) {
+      this.openElement.classList.add('opened');
+    }
+  }
+
+  unselected() {
+    this.elem.classList.remove('active');
+    this.isActive = false;
+    if (this.openElement && this.openElement.classList.contains('opened')) {
+      this.openElement.classList.remove('opened');
+    }
+  }
+
+  events() {
+    this.elem.addEventListener('click', () => {
+      this.select.updateOption(this);
+    });
+  }
 }

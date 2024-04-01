@@ -444,6 +444,7 @@ ul {
 .svg-image-fingerprint,
 .svg-image-guard,
 .svg-image-heartsun,
+.svg-image-idea,
 .svg-image-instagram-logo,
 .svg-image-ok-logo,
 .svg-image-share,
@@ -471,7 +472,7 @@ ul {
   height: 42px
 }
 .svg-image-arrow {
-  background-position: 91.5789473684% 79.1666666667%;
+  background-position: 0 100%;
   background-size: 830.7692307692% auto;
   width: 26px
 }
@@ -487,7 +488,7 @@ ul {
   height: 26px
 }
 .svg-image-automatization {
-  background-position: 0 61.1111111111%;
+  background-position: 0 49.2537313433%;
   background-size: 348.3870967742% auto;
   width: 62px
 }
@@ -503,7 +504,7 @@ ul {
   height: 62px
 }
 .svg-image-facebook-logo {
-  background-position: 75.8620689655% 32.8125%;
+  background-position: 75.8620689655% 27.2727272727%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -535,7 +536,7 @@ ul {
   height: 66px
 }
 .svg-image-guard {
-  background-position: 40.2597402597% 61.1111111111%;
+  background-position: 40.2597402597% 49.2537313433%;
   background-size: 348.3870967742% auto;
   width: 62px
 }
@@ -566,8 +567,24 @@ ul {
   width: 66px;
   height: 66px
 }
+.svg-image-idea {
+  background-position: 75.8620689655% 54.5454545455%;
+  background-size: 514.2857142857% auto;
+  width: 42px
+}
+.svg-image-idea:before {
+  content: "";
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  padding-top: 100%
+}
+.svg-image-idea-dims {
+  width: 42px;
+  height: 42px
+}
 .svg-image-instagram-logo {
-  background-position: 75.8620689655% 65.625%;
+  background-position: 0 83.1168831169%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -583,7 +600,7 @@ ul {
   height: 42px
 }
 .svg-image-ok-logo {
-  background-position: 0 100%;
+  background-position: 24.1379310345% 83.1168831169%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -599,7 +616,7 @@ ul {
   height: 42px
 }
 .svg-image-share {
-  background-position: 24.1379310345% 100%;
+  background-position: 48.275862069% 83.1168831169%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -615,7 +632,7 @@ ul {
   height: 42px
 }
 .svg-image-swiper-arrow {
-  background-position: 93.5483870968% 60%;
+  background-position: 93.5483870968% 75.9036144578%;
   background-size: 720% auto;
   width: 30px
 }
@@ -631,7 +648,7 @@ ul {
   height: 30px
 }
 .svg-image-telegram-logo {
-  background-position: 48.275862069% 100%;
+  background-position: 72.4137931034% 83.1168831169%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -647,7 +664,7 @@ ul {
   height: 42px
 }
 .svg-image-tiktok-logo {
-  background-position: 72.4137931034% 100%;
+  background-position: 100% 0;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -663,7 +680,7 @@ ul {
   height: 42px
 }
 .svg-image-twitter-logo {
-  background-position: 100% 0;
+  background-position: 100% 27.2727272727%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -679,7 +696,7 @@ ul {
   height: 42px
 }
 .svg-image-vk-logo {
-  background-position: 100% 32.8125%;
+  background-position: 100% 54.5454545455%;
   background-size: 514.2857142857% auto;
   width: 42px
 }
@@ -12431,6 +12448,7 @@ picture > img {
   max-width: 100%;
   overflow: hidden!important;
   display: block;
+  position: relative;
   font-family: MTSSans,sans-serif;
   padding: 3.75rem 0;
   background: #303138;
@@ -12447,6 +12465,45 @@ picture > img {
 }
 .page-footer ul li::before {
   display: none
+}
+.page-footer__idea {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: .375rem .75rem;
+  border-radius: .75rem 0 0 0;
+  background: #e30613;
+  border: unset;
+  color: #fff;
+  transition: all .2s ease
+}
+.page-footer__idea::before {
+  content: "";
+  bottom: 0;
+  width: 100%;
+  height: 3rem;
+  display: block;
+  position: absolute
+}
+.page-footer__idea:hover {
+  background: #be000b
+}
+.page-footer__idea svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: .375rem;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0
+}
+.page-footer__idea span {
+  padding-bottom: .125rem
 }
 .page-footer .subscribe {
   color: #fff
