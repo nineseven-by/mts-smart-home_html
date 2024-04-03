@@ -238,6 +238,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // Input Masks
   const forms = Array.from(document.querySelectorAll("form"));
   forms.forEach((form) => {
+    const allRequiredInputs = Array.from(form.querySelectorAll("input[required]"));
+    const requiredInputs = allRequiredInputs.filter((input) => !input.hasAttribute("data-mask"));
+    requiredInputs.forEach((input) => {
+      const minlength = input.getAttribute("minlength");
+      const errorMessageEl = document.createElement("p");
+      errorMessageEl.classList.add("form__error");
+      if (minlength) {
+        errorMessageEl.innerText = `Поле должно быть заполнено. Введите не менее ${minlength} символов`;
+      } else {
+        errorMessageEl.innerText = `Поле должно быть заполнено.`;
+      }
+      input.after(errorMessageEl);
+      input.addEventListener("input", (e) => {
+        if (input.value === "" || input.value.length < minlength) {
+          input.classList.add("invalid");
+          input.classList.remove("valid");
+        } else {
+          input.classList.remove("invalid");
+          input.classList.add("valid");
+        }
+      });
+    });
     if (form.querySelector("[data-mask]")) {
       form.querySelector('button[type="submit"]').disabled = true;
       const maskInputs = Array.from(form.querySelectorAll("[data-mask]"));
@@ -261,11 +283,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
           maskPhone.on("accept", () => {
             const isValid = !input.value.includes('_') && input.value.length === 19;
             if (isValid) {
-              form.querySelector('button[type="submit"]').removeAttribute("disabled");
+              //form.querySelector('button[type="submit"]').removeAttribute("disabled");
               input.classList.remove("invalid");
+              input.classList.add("valid");
             } else {
-              form.querySelector('button[type="submit"]').disabled = true;
+              //form.querySelector('button[type="submit"]').disabled = true;
               input.classList.add("invalid");
+              input.classList.remove("valid");
             }
           });
           input.addEventListener("click", (e) => {
@@ -282,6 +306,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
       });
     }
+    allRequiredInputs.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        let isValid = true;
+        allRequiredInputs.forEach((inp) => {
+          if (!inp.classList.contains("valid")) isValid = false;
+        })
+        if (!isValid) {
+          form.querySelector('button[type="submit"]').disabled = true;
+        } else {
+          form.querySelector('button[type="submit"]').removeAttribute("disabled");
+        }
+      });
+    })
   })
   // Animations
   let keyReady = true;

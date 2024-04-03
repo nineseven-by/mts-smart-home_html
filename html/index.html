@@ -1220,9 +1220,9 @@
                 </div>
                 <div class="popup__body">
                   <form class="smarthome-order__form" action="#" method="post" id="smarthome-idea-popup-form"> 
-                    <label for="popup-fb-name">ФИО</label>
+                    <label for="popup-fb-name">ФИО<span class="color-red"> *</span></label>
                     <div class="wrap-input">
-                      <input id="popup-fb-name" type="text" placeholder="Например, Иванов Иван Иванович">
+                      <input id="popup-fb-name" type="text" placeholder="Например, Иванов Иван Иванович" required minlength="3">
                     </div>
                     <label for="popup-fb-theme">Тема</label>
                     <div class="select"> 
@@ -1234,9 +1234,9 @@
                     </div>
                     <div class="row"> 
                       <div class="col-12 col-md-6">
-                        <label for="popup-fb-mail">Электронный адрес</label>
+                        <label for="popup-fb-mail">Электронный адрес<span class="color-red"> *</span></label>
                         <div class="wrap-input">
-                          <input id="popup-fb-mail" type="email" placeholder="example@mail.ru">
+                          <input id="popup-fb-mail" type="email" placeholder="example@mail.ru" required minlength="3">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">

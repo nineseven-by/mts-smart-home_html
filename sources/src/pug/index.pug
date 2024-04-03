@@ -1021,8 +1021,9 @@ block page
           form.smarthome-order__form(action="#", method="post", id="smarthome-idea-popup-form") 
             //-
             label(for="popup-fb-name") ФИО
+              span.color-red  *
             .wrap-input
-              input#popup-fb-name(type="text", placeholder="Например, Иванов Иван Иванович")
+              input#popup-fb-name(type="text", placeholder="Например, Иванов Иван Иванович", required, minlength="3")
             //-
             label(for="popup-fb-theme") Тема
             .select 
@@ -1034,8 +1035,9 @@ block page
             .row 
               .col-12.col-md-6
                 label(for="popup-fb-mail") Электронный адрес
+                  span.color-red  *
                 .wrap-input
-                  input#popup-fb-mail(type="email", placeholder="example@mail.ru")
+                  input#popup-fb-mail(type="email", placeholder="example@mail.ru", required, minlength="3")
               .col-12.col-md-6
                 label(for="popup-fb-phone") Номер телефона
                   span.color-red  *
