@@ -66,7 +66,6 @@ $(function() {
 
     $('#smarthome-idea-popup-form').on('submit', (e) => {
         e.preventDefault();
-        const commentText = $('#popup-fb-message').val().trim();
 
         $.ajax({
             "url": "/api/request-suggestion",
@@ -77,7 +76,7 @@ $(function() {
             "data": {
                 "email": $('#popup-fb-mail').val(),
                 "phone": $('#popup-fb-phone').val(),
-                "message": commentText === '' ? null : commentText,
+                "message": $('#popup-fb-message').val().trim(),
                 "theme": $('#popup-fb-theme').val(),
                 "fio": $('#popup-fb-name').val(),
             }
