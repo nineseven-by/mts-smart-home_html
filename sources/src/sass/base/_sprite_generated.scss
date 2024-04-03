@@ -35,13 +35,13 @@
 
 .svg-image-arrow {
 	@extend %svg-common;
-	background-position: 0 100%;
+	background-position: 15.789473684210526% 97.70114942528735%;
 	background-size: math.div(216, 26)*100% auto;
 	width: 26px;
 
 }
 @mixin svg-pos-image-arrow {
-	background-position: 0 100%;
+	background-position: 15.789473684210526% 97.70114942528735%;
 }
 @mixin svg-image-arrow-hover {
 	.svg-image-arrow {
@@ -64,13 +64,13 @@
 
 .svg-image-automatization {
 	@extend %svg-common;
-	background-position: 0 49.25373134328358%;
+	background-position: 0 47.82608695652174%;
 	background-size: math.div(216, 62)*100% auto;
 	width: 62px;
 
 }
 @mixin svg-pos-image-automatization {
-	background-position: 0 49.25373134328358%;
+	background-position: 0 47.82608695652174%;
 }
 @mixin svg-image-automatization-hover {
 	.svg-image-automatization {
@@ -91,15 +91,44 @@
 	height: 62px;
 }
 
+.svg-image-compare {
+	@extend %svg-common;
+	background-position: 75.86206896551724% 26.582278481012658%;
+	background-size: math.div(216, 42)*100% auto;
+	width: 42px;
+
+}
+@mixin svg-pos-image-compare {
+	background-position: 75.86206896551724% 26.582278481012658%;
+}
+@mixin svg-image-compare-hover {
+	.svg-image-compare {
+		@include svg-pos-image-compare-hover
+	}
+}
+
+.svg-image-compare:before {
+	content:"";
+	display:block;
+	font-size:0;
+	line-height:0;
+	padding-top: math.div(42, 42)*100%;
+}
+
+.svg-image-compare-dims {
+	width: 42px;
+	height: 42px;
+}
+
 .svg-image-facebook-logo {
 	@extend %svg-common;
-	background-position: 75.86206896551724% 27.272727272727273%;
+	background-position: 75.86206896551724% 53.164556962025316%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-facebook-logo {
-	background-position: 75.86206896551724% 27.272727272727273%;
+	background-position: 75.86206896551724% 53.164556962025316%;
 }
 @mixin svg-image-facebook-logo-hover {
 	.svg-image-facebook-logo {
@@ -151,13 +180,13 @@
 
 .svg-image-guard {
 	@extend %svg-common;
-	background-position: 40.25974025974026% 49.25373134328358%;
+	background-position: 40.25974025974026% 47.82608695652174%;
 	background-size: math.div(216, 62)*100% auto;
 	width: 62px;
 
 }
 @mixin svg-pos-image-guard {
-	background-position: 40.25974025974026% 49.25373134328358%;
+	background-position: 40.25974025974026% 47.82608695652174%;
 }
 @mixin svg-image-guard-hover {
 	.svg-image-guard {
@@ -209,13 +238,13 @@
 
 .svg-image-idea {
 	@extend %svg-common;
-	background-position: 75.86206896551724% 54.54545454545455%;
+	background-position: 0 81.0126582278481%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-idea {
-	background-position: 75.86206896551724% 54.54545454545455%;
+	background-position: 0 81.0126582278481%;
 }
 @mixin svg-image-idea-hover {
 	.svg-image-idea {
@@ -238,13 +267,13 @@
 
 .svg-image-instagram-logo {
 	@extend %svg-common;
-	background-position: 0 83.11688311688312%;
+	background-position: 24.137931034482758% 81.0126582278481%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-instagram-logo {
-	background-position: 0 83.11688311688312%;
+	background-position: 24.137931034482758% 81.0126582278481%;
 }
 @mixin svg-image-instagram-logo-hover {
 	.svg-image-instagram-logo {
@@ -267,13 +296,13 @@
 
 .svg-image-ok-logo {
 	@extend %svg-common;
-	background-position: 24.137931034482758% 83.11688311688312%;
+	background-position: 48.275862068965516% 81.0126582278481%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-ok-logo {
-	background-position: 24.137931034482758% 83.11688311688312%;
+	background-position: 48.275862068965516% 81.0126582278481%;
 }
 @mixin svg-image-ok-logo-hover {
 	.svg-image-ok-logo {
@@ -296,13 +325,13 @@
 
 .svg-image-share {
 	@extend %svg-common;
-	background-position: 48.275862068965516% 83.11688311688312%;
+	background-position: 72.41379310344827% 81.0126582278481%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-share {
-	background-position: 48.275862068965516% 83.11688311688312%;
+	background-position: 72.41379310344827% 81.0126582278481%;
 }
 @mixin svg-image-share-hover {
 	.svg-image-share {
@@ -325,13 +354,13 @@
 
 .svg-image-swiper-arrow {
 	@extend %svg-common;
-	background-position: 93.54838709677419% 75.90361445783132%;
+	background-position: 0 100%;
 	background-size: math.div(216, 30)*100% auto;
 	width: 30px;
 
 }
 @mixin svg-pos-image-swiper-arrow {
-	background-position: 93.54838709677419% 75.90361445783132%;
+	background-position: 0 100%;
 }
 @mixin svg-image-swiper-arrow-hover {
 	.svg-image-swiper-arrow {
@@ -354,13 +383,13 @@
 
 .svg-image-telegram-logo {
 	@extend %svg-common;
-	background-position: 72.41379310344827% 83.11688311688312%;
+	background-position: 100% 0;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-telegram-logo {
-	background-position: 72.41379310344827% 83.11688311688312%;
+	background-position: 100% 0;
 }
 @mixin svg-image-telegram-logo-hover {
 	.svg-image-telegram-logo {
@@ -383,13 +412,13 @@
 
 .svg-image-tiktok-logo {
 	@extend %svg-common;
-	background-position: 100% 0;
+	background-position: 100% 26.582278481012658%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-tiktok-logo {
-	background-position: 100% 0;
+	background-position: 100% 26.582278481012658%;
 }
 @mixin svg-image-tiktok-logo-hover {
 	.svg-image-tiktok-logo {
@@ -412,13 +441,13 @@
 
 .svg-image-twitter-logo {
 	@extend %svg-common;
-	background-position: 100% 27.272727272727273%;
+	background-position: 100% 53.164556962025316%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-twitter-logo {
-	background-position: 100% 27.272727272727273%;
+	background-position: 100% 53.164556962025316%;
 }
 @mixin svg-image-twitter-logo-hover {
 	.svg-image-twitter-logo {
@@ -441,13 +470,13 @@
 
 .svg-image-vk-logo {
 	@extend %svg-common;
-	background-position: 100% 54.54545454545455%;
+	background-position: 100% 79.74683544303798%;
 	background-size: math.div(216, 42)*100% auto;
 	width: 42px;
 
 }
 @mixin svg-pos-image-vk-logo {
-	background-position: 100% 54.54545454545455%;
+	background-position: 100% 79.74683544303798%;
 }
 @mixin svg-image-vk-logo-hover {
 	.svg-image-vk-logo {

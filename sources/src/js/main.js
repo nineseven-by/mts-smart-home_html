@@ -37,7 +37,6 @@ const dateMs = {
 // Склонение слов в зависимости от числа
 function getNoun(number, one, two, five) {
   let n = Math.abs(number);
-  //console.log(number)
   n %= 100;
   if (n >= 5 && n <= 20) {
     return five;
@@ -187,7 +186,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const popupImgElem = popup.querySelector("[data-good-preview]");
     const popupIdElem = popup.querySelector("[data-good-name-input]");
     const items = Array.from(document.querySelectorAll("[data-good-id]"));
-    //console.log(items)
     items.forEach((item) => {
       const itemNameElem = item.querySelector(".smartpopular-item__title");
       const itemImgElem = item.querySelector(".smartpopular-item__image img");
@@ -197,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         popupImgElem.alt = itemImgElem.alt;
         popupImgElem.src = itemImgElem.src;
         popupIdElem.value = itemNameElem.innerText;
-        console.log(popupIdElem.value)
         openPopup("popup-item");
       });
     })
@@ -276,14 +273,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
               maskPhone.alignCursor();
             }, 0);
           });
-          //input.addEventListener("change", (e) => {
-            
-          //  console.log(maskPhone)
-          //  console.log(input.value[18])
-          //  if (maskPhone.value.length < 19 && typeof +maskPhone.value[19] !== "number") {
-          //    console.log("NO")
-          //  }
-          //});
         }
         input.addEventListener("keydown", (e) => {
           if (e.key === "ArrowRight") e.preventDefault();
@@ -350,6 +339,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       });
     });
   }
+
+  new Compare();
+  //openPopup("popup-compare");
 });
 
 
@@ -402,6 +394,9 @@ class SmartHome {
     this.view.classList.add("opened");
     document.querySelector("header").classList.remove("opened");
     document.querySelector("header").classList.add("hide");
+    if (document.querySelector(".statusbar")) {
+      document.querySelector(".statusbar").classList.add("hide");
+    }
     if (window.innerWidth < 1200) {
       this.bodyFix(true);
     }
@@ -416,6 +411,9 @@ class SmartHome {
     }
     this.view.classList.remove("opened");
     document.querySelector("header").classList.remove("hide");
+    if (document.querySelector(".statusbar")) {
+      document.querySelector(".statusbar").classList.remove("hide");
+    }
   }
 
   toggleViewMode(e) {
@@ -426,6 +424,9 @@ class SmartHome {
     if (overlayGood) {
       overlayGood.classList.remove("opened");
       header.classList.remove("hide-good");
+      if (document.querySelector(".statusbar")) {
+        document.querySelector(".statusbar").classList.remove("hide");
+      }
       bodyFix(false);
     }
     this.viewMode = target.dataset.viewmode;
@@ -448,6 +449,9 @@ class SmartHome {
     if (overlayGood) {
       overlayGood.classList.remove("opened");
       header.classList.remove("hide-good");
+      if (document.querySelector(".statusbar")) {
+        document.querySelector(".statusbar").classList.remove("hide");
+      }
       bodyFix(false);
     }
     targetDots.innerHTML = "";
@@ -544,6 +548,9 @@ class SmartPopupGood {
       if (overlayGood) {
         overlayGood.classList.remove("opened");
         header.classList.remove("hide-good");
+        if (document.querySelector(".statusbar")) {
+          document.querySelector(".statusbar").classList.remove("hide");
+        }
         bodyFix(false);
       }
     });
@@ -776,6 +783,9 @@ class SmartGroup {
       if (overlayGood && window.innerWidth >= 1200) {
         overlayGood.classList.add("opened");
         header.classList.add("hide-good");
+        if (document.querySelector(".statusbar")) {
+          document.querySelector(".statusbar").classList.add("hide");
+        }
         bodyFix(true);
       }
     });
@@ -786,6 +796,9 @@ class SmartGroup {
       if (overlayGood && window.innerWidth >= 1200) {
         overlayGood.classList.add("opened");
         header.classList.add("hide-good");
+        if (document.querySelector(".statusbar")) {
+          document.querySelector(".statusbar").classList.add("hide");
+        }
         bodyFix(true);
       }
     });
@@ -1496,5 +1509,158 @@ class SelectOption {
     this.elem.addEventListener('click', () => {
       this.select.updateOption(this);
     });
+  }
+}
+
+class Compare {
+  constructor() {
+    this.compareItemsAll = Array.from(document.querySelectorAll(".smartpopular-item")).map((el) => new CompareItem(el));
+    this.compareItemsActive = [];
+
+    this.statusbar = document.querySelector(".statusbar");
+    this.templateCompareItem = document.querySelector("#template-compare-item");
+    this.itemWrapper = document.querySelector(".compare-table__body");
+
+    this.addEvents();
+  }
+  checkVisibleStatusbar() {
+    if (!this.statusbar) return;
+    if (this.compareItemsActive.length > 0) {
+      this.statusbar.classList.add("active");
+      this.statusbar.querySelector(".compare-statusbar span").innerText = this.compareItemsActive.length;
+    } else {
+      this.statusbar.classList.remove("active");
+      closePopup();
+    }
+  }
+  showWarning() {
+    if (document.querySelector(".statusbar__warning").classList.contains("animated")) return;
+    document.querySelector(".statusbar__warning").classList.add("animated");
+    gsap.to(".statusbar__warning", {
+      scale: 1,
+      duration: 1.5,
+      ease: "elastic.out(1, 0.3)",
+      onComplete: function() {
+        gsap.to(".statusbar__warning", {
+          scale: 0,
+          delay: 1,
+          onComplete: function() {
+            document.querySelector(".statusbar__warning").classList.remove("animated");
+          }
+        })
+      }
+    })
+  }
+  compareChars() {
+    Array.from(this.itemWrapper.querySelectorAll(".best")).forEach((el) => {
+      el.classList.remove("best");
+    });
+    if (this.compareItemsActive.length <= 1) {
+      return;
+    }
+    let bestMonthPay;
+    let bestFullPrice;
+    let bestMonthPayIndex = 0;
+    let bestFullPriceIndex = 0;
+    this.compareItemsActive.forEach((item, ind) => {
+      const monthPay = Number(item.monthPay.replace(".", ""));
+      const price = Number(item.monthPay.replace(".", ""));
+      if (!isNaN(monthPay)) {
+        if (!bestMonthPay) {
+          bestMonthPay = monthPay;
+        } else if (bestMonthPay > monthPay) {
+          bestMonthPay = monthPay;
+          bestMonthPayIndex = ind;
+        }
+      }
+      if (!isNaN(price)) {
+        if (!bestFullPrice) {
+          bestFullPrice = price;
+        } else if (bestFullPrice > price) {
+          bestFullPrice = price;
+          bestFullPriceIndex = ind;
+        }
+      }
+    });
+    this.compareItemsActive[bestMonthPayIndex].compareElem.querySelector(".compare-char--month").classList.add("best");
+    this.compareItemsActive[bestFullPriceIndex].compareElem.querySelector(".compare-char--price").classList.add("best");
+  }
+  addInCompare(item) {
+    if (this.compareItemsActive.length === 3) {
+      this.showWarning();
+      return;
+    }
+    item.activeCompare = true;
+    this.compareItemsActive.push(item);
+    item.elems.card.querySelector(".compare").classList.add("active");
+
+    const elems = item.elems;
+    const newCard = this.templateCompareItem.content.cloneNode(true);
+    const elem = newCard.querySelector(".compare-item");
+    newCard.querySelector("img").setAttribute("alt", elems.image.getAttribute("alt"));
+    newCard.querySelector("img").setAttribute("src", elems.image.getAttribute("src"));
+    newCard.querySelector("a").setAttribute("href", item.link);
+    newCard.querySelector("a").innerText = item.title;
+    newCard.querySelector(".compare-char--month strong").innerText = item.monthPay;
+    newCard.querySelector(".compare-char--price strong").innerText = item.fullPrice;
+    newCard.querySelector(".compare-remove").addEventListener("click", this.removeFromCompare.bind(this, item));
+    item.compareElem = elem;
+
+    this.itemWrapper.appendChild(newCard);
+    this.compareChars();
+    this.checkVisibleStatusbar();
+  }
+  removeFromCompare(item) {
+    item.activeCompare = false;
+    item.elems.card.querySelector(".compare").classList.remove("active");
+    this.itemWrapper.removeChild(item.compareElem);
+    item.compareElem = null;
+    this.compareItemsActive = this.compareItemsActive.filter((compareItem) => compareItem !== item);
+    this.compareChars();
+    this.checkVisibleStatusbar();
+  }
+  addEvents() {
+    this.compareItemsAll.forEach((item) => {
+      item.elems.card.querySelector(".compare").addEventListener("click", (e) => {
+        if (!item.activeCompare) {
+          this.addInCompare(item);
+        } else {
+          this.removeFromCompare(item);
+        }
+      });
+    })
+  }
+}
+class CompareItem {
+  constructor(wrapper) {
+    this.wrapper = wrapper;
+    this.activeCompare = false;
+    this.compareElem = null;
+
+    // Элементы DOM
+    this.elems = {
+      card: wrapper,
+      title: wrapper.querySelector(".smartpopular-item__title"),
+      image: wrapper.querySelector(".smartpopular-item__image img"),
+      monthPay: wrapper.querySelector(".smartpopular-item__price .color-red strong"),
+      fullPrice: wrapper.querySelector(".smartpopular-item__price .color-black strong"),
+      link: wrapper.querySelector(".smartpopular-item__btns a")
+    };
+
+    // Значения
+    this.link = this.elems.link.getAttribute("href") ?? "#";
+    this.title = this.elems.title.textContent;
+    this.monthPay = this.elems.monthPay.textContent;
+    this.fullPrice = this.elems.fullPrice.textContent;
+    //this.title = this.getValueFromElem("title", "Товар без названия");
+    //this.monthPay = this.getValueFromElem("monthPay", `Проверьте ежемесячный платеж на <a href=${this.link}>shop.mts.by</a>`);
+    //this.fullPrice = this.getValueFromElem("fullPrice", `Проверьте полную стоимость на <a href=${this.link}>shop.mts.by</a>`);
+  } 
+
+  getValueFromElem(charName, errValueText) {
+    let value = "";
+    if (!this.elems[charName]) value = errValueText;
+    if (!!this.elems[charName]) value = this.elems[charName].innerText ?? errValueText;
+    return value;
   }
 }

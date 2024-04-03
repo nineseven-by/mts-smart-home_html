@@ -44,7 +44,6 @@ export class Tabs {
           return tl;
         }
         function openTl(elem) {
-          console.log(elem)
           const tl = gsap.timeline();
           tl.to(elem, {
             height: 'auto',
