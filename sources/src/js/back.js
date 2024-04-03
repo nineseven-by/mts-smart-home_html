@@ -66,7 +66,8 @@ $(function() {
 
     $('#smarthome-idea-popup-form').on('submit', (e) => {
         e.preventDefault();
-
+        const commentText = $('#popup-fb-message').val().trim();
+        
         $.ajax({
             "url": "/api/request-suggestion",
             "method": "POST",
@@ -76,7 +77,7 @@ $(function() {
             "data": {
                 "email": $('#popup-fb-mail').val(),
                 "phone": $('#popup-fb-phone').val(),
-                "message": $('#popup-fb-message').val().trim(),
+                "message": commentText === '' ? null : commentText,
                 "theme": $('#popup-fb-theme').val(),
                 "fio": $('#popup-fb-name').val(),
             }
