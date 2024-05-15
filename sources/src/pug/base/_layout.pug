@@ -3,7 +3,6 @@ include _mixins
 doctype html
 html(lang="ru")
     head
-        include ../external/_gtag.html
         block head
             title PageTitle
 
@@ -44,7 +43,6 @@ html(lang="ru")
 
         // CSS
         link(rel="stylesheet" href="css/main.min.css")
-        include ../external/_yametrika.html
     block variables 
         - var layoutClass = ''
     body
@@ -71,3 +69,6 @@ html(lang="ru")
         block js
             script(src="js/main.min.js")
             script(src="js/back.min.js")
+
+            include ../external/_gtag.html
+            include ../external/_yametrika.html
